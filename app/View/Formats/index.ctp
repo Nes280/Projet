@@ -8,13 +8,13 @@
     </head>
 
     <body>
-    <h1>Genre de films</h1>
+    <h1>Format de films</h1>
     <nav>
         <ul>
-    <?php foreach ($genres as $genre): 
-         echo '<li>'.$this->Html->link($genre['Genre']['genre'],array('controller' => 'genres', 'action' => 'view', $genre['Genre']['id'])).'</li>'; 
+    <?php foreach ($formats as $format): 
+         echo '<li>'.$this->Html->link($format['Format']['format'],array('controller' => 'formats', 'action' => 'view', $format['Format']['id'])).'</li>'; 
         endforeach; 
-        unset($genre); ?>
+        unset($format); ?>
     </ul>
     </body>
 </html>
