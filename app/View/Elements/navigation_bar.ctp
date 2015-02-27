@@ -9,16 +9,29 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-       
+          <li class="active">
+          <?php
+            echo $this->Html->link('Connexion', array(
+              'controller' => 'Mashes',
+              'action'=>'add'));
+          ?>
+        </li>
       </ul>
 
       <!-- Left Nav Section -->
       <ul class="left">
-        <li class='active'>
+        <li class="has-dropdown">
+        <a href="#">Films</a>
+        <ul class="dropdown">
+          <?php echo "<li>".$this->Html->link('Genre de films', array('controller' => 'genres','action'=>'index'))."</li>";
+                echo "<li>".$this->Html->link('Format de films', array('controller' => 'formats','action'=>'index'))."</li>";
+          ?>
+        </ul>
+      </li>
           <?php
-            echo $this->Html->link('Films', array(
+            /*echo $this->Html->link('Genre de films', array(
               'controller' => 'genres',
-              'action'=>'index'));
+              'action'=>'index'));*/
           ?>
         </li>
         <li>
@@ -26,13 +39,6 @@
             echo $this->Html->link('Consulter le classement', array(
               'controller' => 'Mashes',
               'action'=>'facemash_scores'));
-          ?>
-        </li>
-        <li>
-          <?php
-            echo $this->Html->link('Connexion', array(
-              'controller' => 'Mashes',
-              'action'=>'add'));
           ?>
         </li>
       </ul>
