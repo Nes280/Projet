@@ -1,1 +1,0 @@
-<h1><?php echo h($format['Format']['format']); ?></h1>

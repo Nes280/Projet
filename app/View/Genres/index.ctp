@@ -8,13 +8,11 @@
     </head>
 
     <body>
-    <h1>Genre de films</h1>
-    <nav>
-        <ul>
+    <h1>Liste des films</h1>
+    <p> GENRE : </p>
     <?php foreach ($genres as $genre): 
-         echo '<li>'.$this->Html->link($genre['Genre']['genre'],array('controller' => 'genres', 'action' => 'view', $genre['Genre']['id'])).'</li>'; 
+         echo '<p>'.$this->Html->link($genre['Genre']['genre'],array('controller' => 'genres', 'action' => 'view', $genre['Genre']['id'])).'</p>'; 
         endforeach; 
         unset($genre); ?>
-    </ul>
     </body>
 </html>
