@@ -3,14 +3,13 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
 
-		//on importe le css de foundation (version minimisée)
-		echo $this->Html->css('foundation.min');
+		//on importe le css de foundation 
+		echo $this->Html->css('foundation');
 
 		//ici on importe jQuery (donné par foundation) et le javascript du framework foundation
 		echo $this->Html->script('vendor/jquery.js');
@@ -57,7 +56,7 @@
 		<div id="footer">
 			<div class='row'>
 				<div class='large-12 columns'>
-					<p> Auteur : Mubb - Année 2014 </p>
+					<p> Auteur : Elsa Martel et Niels Benichou - Année 2015 </p>
 				</div>
 			</div>
 		</div>
