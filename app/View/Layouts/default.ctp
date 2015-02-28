@@ -63,7 +63,7 @@
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 
-	<?php //ce script qui suit sert à activer certains éléments de foundation dans les pages, mettez le sans vous en préoccuper plus que ça ?>
+	<?php //ce script qui suit sert à activer certains éléments de foundation dans les pages ?>
 	<script>
 	  $(document).foundation();
 	</script>

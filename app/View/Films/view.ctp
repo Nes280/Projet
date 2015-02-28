@@ -1,0 +1,1 @@
+<h1><?php echo h($film['Film']['film']); ?></h1>

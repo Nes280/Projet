@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Accueil</title>
+        <title>Genres</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="SHORTCUT ICON" href="favicon.ico" /> 
     </head>
