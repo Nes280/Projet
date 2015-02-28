@@ -1,2 +1,6 @@
-class Genre extends AppModel {
-}
+<?php
+	class Genre extends AppModel 
+	{
+
+	}
+?>
