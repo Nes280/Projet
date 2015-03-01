@@ -41,6 +41,13 @@
               'action'=>'facemash_scores'));
           ?>
         </li>
+        <li>
+          <?php
+            echo $this->Html->link('Inscription', array(
+              'controller' => 'Membres',
+              'action'=>'add'));
+          ?>
+        </li>
       </ul>
     </section>
   </nav>
