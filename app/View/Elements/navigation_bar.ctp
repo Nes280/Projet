@@ -13,7 +13,7 @@
                     <?php
             if(true) // le temps de gerer les connexions...
             {
-                echo $this->Html->link('Connexion', array('controller' => 'Mashes','action'=>'add'));
+                echo $this->Html->link('Connexion / Inscription', array('controller' => 'Membres','action'=>'add'));
             }
             else
             {
@@ -47,13 +47,7 @@
               'action'=>'facemash_scores'));
           ?>
         </li>
-        <li>
-          <?php
-            echo $this->Html->link('Inscription', array(
-              'controller' => 'Membres',
-              'action'=>'add'));
-          ?>
-        </li>
+        
       </ul>
     </section>
   </nav>
