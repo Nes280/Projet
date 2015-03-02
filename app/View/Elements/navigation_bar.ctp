@@ -10,10 +10,16 @@
       <!-- Right Nav Section -->
       <ul class="right">
           <li class="active">
-          <?php
-            echo $this->Html->link('Connexion', array(
-              'controller' => 'Mashes',
-              'action'=>'add'));
+                    <?php
+            if(true) // le temps de gerer les connexions...
+            {
+                echo $this->Html->link('Connexion', array('controller' => 'Mashes','action'=>'add'));
+            }
+            else
+            {
+              echo $this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'));
+            }
+
           ?>
         </li>
       </ul>
