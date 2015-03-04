@@ -4,30 +4,29 @@
     App::uses('Rating','Lib');*/
 
 	class MembresController extends AppController {
-        public $helpers = array('Html', 'Form');
+       // public $helpers = array('Html', 'Form');
 
         //public $components = array('Session'); //servira pour la suite
 
 
-        public function add() {
+        public function enregistrer() {
             if($this->request->is('post'))
             {
                 debug($this->request->data);
-                //$this->Membres->create();
-                $nom= $this->request->data['Membres']['nom'];
-                $prenom= $this->request->data['Membres']['prenom'];
-                $pseudo= $this->request->data['Membres']['pseudo'];
-                $login= $this->request->data['Membres']['login'];
-                $age= $this->request->data['Membres']['age'];
-                $admin =$this->request->data['Membres']['admin'];
-                if(!empty($nom)&& !empty($prenom) && !empty($pseudo) && !empty($login) && !empty($age) && !empty($admin))
+                $d = $this->request->data;
+                $d['Membre']['id'] = null;
+               /*$this->Membre->save($d, true, array('nom','prenom','username','mdp','age','administrateur'));
+                debug($this->Membre->validationErrors); //show validationErrors
+                debug($this->Membre->getDataSource()->getLog(false, false));*/
+                if($this->Membre->save($d, true, array('nom','prenom','username','mdp','age','administrateur')))
                 {
-                    /*$sql = "INSERT INTO membres VALUES (NULL,$nom, $prenom, $pseudo, $login, $age, $admin)";
-                    $this->Membres->exec($sql);*/
-                    //$this->Membres->save($this->request->data);
+                    die("success");
                 }
-
-
+                else
+                {
+                    die("error");
+                }
+                
 
             }
         }
@@ -35,4 +34,3 @@
     
 }
 
-?>

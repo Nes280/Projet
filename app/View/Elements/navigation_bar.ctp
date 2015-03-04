@@ -13,7 +13,7 @@
                     <?php
             if(true) // le temps de gerer les connexions...
             {
-                echo $this->Html->link('Connexion / Inscription', array('controller' => 'Membres','action'=>'add'));
+                echo $this->Html->link('Connexion / Inscription', array('controller' => 'Membres','action'=>'enregistrer'));
             }
             else
             {
