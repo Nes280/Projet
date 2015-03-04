@@ -10,16 +10,18 @@
       <!-- Right Nav Section -->
       <ul class="right">
           <li class="active">
-                    <?php
-            if(true) // le temps de gerer les connexions...
-            {
-                echo $this->Html->link('Connexion / Inscription', array('controller' => 'Membres','action'=>'enregistrer'));
-            }
-            else
-            {
-              echo $this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'));
-            }
+            <?php
+              if(AuthComponent::user('id'))
+              {
+                echo $this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'));
+                echo $this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'));
 
+              }
+              else
+              {
+                echo $this->Html->link('Inscription', array('controller' => 'Membres','action'=>'enregistrer'));
+                echo $this->Html->link('Connexion ', array('controller' => 'Membres','action'=>'login'));
+              }
           ?>
         </li>
       </ul>
