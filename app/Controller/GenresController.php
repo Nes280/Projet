@@ -16,6 +16,10 @@
             throw new NotFoundException(__('Invalid genre'));
         }
         $this->set('genre', $genre);
+        $lesFilms = $this->Genre->Film->find('all',array(
+            'fields'=>array('nom','id','genre_id'),
+            'conditions'=>array('genre_id'=>$genre['Genre']['id'])));
+        $this->set('filmsGenre',$lesFilms);
     }
 }
 
