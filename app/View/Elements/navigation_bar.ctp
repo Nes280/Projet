@@ -9,21 +9,20 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-          <li class="active">
+          
             <?php
               if(AuthComponent::user('id'))
               {
-                echo $this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'));
-                echo $this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'));
+                echo "<li class='active'>".$this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'))."</li>";
+                echo "<li class='active'>".$this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'))."</li>";
 
               }
               else
               {
-                echo $this->Html->link('Inscription', array('controller' => 'Membres','action'=>'enregistrer'));
-                echo $this->Html->link('Connexion ', array('controller' => 'Membres','action'=>'login'));
+                echo "<li class='active'>".$this->Html->link('Inscription', array('controller' => 'Membres','action'=>'enregistrer'))."</li>";
+                echo "<li class='active'>".$this->Html->link('Connexion ', array('controller' => 'Membres','action'=>'login'))."<li>";
               }
           ?>
-        </li>
       </ul>
 
       <!-- Left Nav Section -->
