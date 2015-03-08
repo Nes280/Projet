@@ -39,10 +39,10 @@
             if($this->request->is('post'))
             {
 
-                $this->request->data['Membre']['mdp'] = Security::hash($this->request->data['Membre']['mdp'], null,true);
-                debug($this->request->data);
+                //$this->request->data['Membre']['mdp'] = Security::hash($this->request->data['Membre']['mdp'], null,true);
+                //debug($this->request->data);
 
-               if($this->Auth->login())
+               if($this->Auth->login($this->request->data))
                 {
                     $this->Session->setFlash("Vous êtes maintenant connecté", "notif");
                     $this->redirect('/');

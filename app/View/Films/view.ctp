@@ -1,6 +1,14 @@
 <h1><?php echo $film['Film']['nom']; ?></h1>
 <?php echo"<img src='../../app/webroot/img/".$film['Film']['nom'].".jpg' height='740' width='500'>";?>
 <h5>Synopsis :</h5>
+<?php
+	if($film['Film']['video'] !="")
+	{
+		echo "	<div>
+					<iframe width='840' height='630' src='".$film['Film']['video']."' framebordeer='0' ></iframe>
+				</div>";
+	}
+?>
 <p><?php echo h($film['Film']['synopsis']); ?></p>
 <h5>Durée :</h5>
 <p><?php echo h($film['Film']['duree'])." minutes"; ?></p>
