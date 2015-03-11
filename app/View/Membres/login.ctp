@@ -6,4 +6,6 @@
 			<?php echo $this->Form->input('mdp',array('label' =>"Mot de passe", "type"=>"password")); ?>
 		</div>
 	</div>
-<?php echo $this->Form->end('Se connecter'); ?>
+	<div class="row">
+		<?php echo $this->Form->end('Se connecter'); ?>
+	</div>

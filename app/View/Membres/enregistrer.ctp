@@ -10,6 +10,12 @@
 			<?php echo $this->Form->input('age',array('label' =>"Age", "type"=>"number", "min"=>"10", "max"=>"110")); ?>
 		</div>
 	</div>
+	<div class="row">
+		<div class="large-6 columns">
 			<?php $attributes['value'] = 0; echo $this->Form->radio('administrateur',array("non", "oui"), $attributes); ?>
-<?php echo $this->Form->end('enregistrer'); ?>
+		</div>
+	</div>
+	<div class="row">
+		<?php echo $this->Form->end('Enregistrer'); ?>
+	</div>
 
