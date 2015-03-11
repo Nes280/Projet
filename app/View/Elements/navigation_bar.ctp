@@ -11,7 +11,7 @@
       <ul class="right">
           
             <?php
-              if(AuthComponent::user('id'))
+              if(AuthComponent::user('Membre'))
               {
                 echo "<li class='active'>".$this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'))."</li>";
                 echo "<li class='active'>".$this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'))."</li>";

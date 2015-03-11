@@ -1,13 +1,6 @@
 <?php 
 
-    /*App::uses('AppController', 'Controller');
-    App::uses('Rating','Lib');*/
-
 	class MembresController extends AppController {
-       // public $helpers = array('Html', 'Form');
-
-        //public $components = array('Session'); //servira pour la suite
-
 
         public function enregistrer() {
             if($this->request->is('post'))
@@ -34,25 +27,29 @@
             }
         }
 
-        function login()
+        public function login()
         {
             if($this->request->is('post'))
             {
 
-                //$this->request->data['Membre']['mdp'] = Security::hash($this->request->data['Membre']['mdp'], null,true);
-                //debug($this->request->data);
+                $d = $this->Membre->findByUsername($this->request->data['Membre']['username']);
+                print_r($d);
 
-               if($this->Auth->login($this->request->data))
-                {
-                    $this->Session->setFlash("Vous êtes maintenant connecté", "notif");
-                    $this->redirect('/');
+                if(!empty($d))
+                { 
+                    if($d['Membre']['mdp'] == Security::hash($this->request->data['Membre']['mdp'], null,true))
+                    {
+                        if($this->Auth->login($this->request->data))
+                        {
+                            $this->Session->setFlash("Vous êtes maintenant connecté", "notif");
+                            $this->redirect('/films');
+                        }
+                    }
+
                 }
-                else
+                 else
                 {
                     $this->Session->setFlash("Identifiants incorrects", "notif");
-                    //debug();
-
-
                 }
             }
 
@@ -60,7 +57,7 @@
         }
 
 
-        function logout()
+        public function logout()
         {
             $this->Auth->logout();
             $this->redirect($this->referer());

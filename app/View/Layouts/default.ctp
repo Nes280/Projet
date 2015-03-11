@@ -68,6 +68,9 @@
 	  $(document).foundation();
 	</script>
 
+		<?php echo $this->element('debug'); ?>
+
+
 </body>
 
 
