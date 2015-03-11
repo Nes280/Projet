@@ -33,7 +33,7 @@
             {
 
                 $d = $this->Membre->findByUsername($this->request->data['Membre']['username']);
-                print_r($d);
+                //print_r($d);
 
                 if(!empty($d))
                 { 
@@ -45,12 +45,19 @@
                             $this->redirect('/films');
                         }
                     }
+                    else 
+                    {
+                        $this->Session->setFlash("Mot de passe incorrect", "notif");
+
+                    }
+
 
                 }
-                 else
+                else
                 {
                     $this->Session->setFlash("Identifiants incorrects", "notif");
                 }
+     
             }
 
 
