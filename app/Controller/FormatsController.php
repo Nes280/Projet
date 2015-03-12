@@ -16,6 +16,10 @@
             throw new NotFoundException(__('Invalid formats'));
         }
         $this->set('format', $format);
+        $lesFilms = $this->Format->Film->find('all',array(
+            'fields'=>array('nom','id','format_id'),
+            'conditions'=>array('format_id'=>$format['Format']['id'])));
+        $this->set('filmsFormat',$lesFilms);
     }
 }
 
