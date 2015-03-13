@@ -9,14 +9,23 @@
 
     <body>
     <h1>Accueil</h1>
-    <nav>
-        <ul>
+        
     <?php 
         foreach ($films as $film): 
-            echo '<li>'.$this->Html->link($film['Film']['nom'],
-                array('controller' => 'films', 'action' => 'view', $film['Film']['id'])).'</li>'; 
+            echo    $this->Html->link($this->Html->image(
+                        $film['Film']['nom'].".jpg", 
+                            array(
+                                "alt" => $film['Film']['nom'],
+                                "height" => "200",
+                                "width" => "150")),
+                    array(
+                        'controller' => 'films', 
+                        'action' => 'view', 
+                        $film['Film']['id']),
+                        array('escape' => false)); 
         endforeach; 
         unset($film); ?>
-    </ul>
+    
     </body>
 </html>
+
