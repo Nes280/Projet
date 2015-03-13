@@ -35,17 +35,11 @@
           ?>
         </ul>
       </li>
-          <?php
-            /*echo $this->Html->link('Genre de films', array(
-              'controller' => 'genres',
-              'action'=>'index'));*/
-          ?>
-        </li>
-        <li>
+      <li>
           <?php
             echo $this->Html->link('Consulter le classement', array(
-              'controller' => 'Mashes',
-              'action'=>'facemash_scores'));
+              'controller' => 'films',
+              'action'=>'classement'));
           ?>
         </li>
         

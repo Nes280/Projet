@@ -17,6 +17,14 @@
         }
         $this->set('film', $film);
     }
+
+    public function classement(){
+        $this->set('films', $this->Film->find('all',
+            array(
+                'order'=> 'note DESC',
+                'limit'=> '2'
+                )));
+    }
 }
 
 ?>
