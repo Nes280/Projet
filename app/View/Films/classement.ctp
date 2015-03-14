@@ -1,7 +1,8 @@
 <h1> Top 5 des films </h1>
 <?php
+echo ' <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">';
 foreach ($films as $film): 
-            echo    "<td>".$this->Html->link($this->Html->image(
+            echo    "<li>".$this->Html->link($this->Html->image(
                         $film['Film']['nom'].".jpg", 
                             array(
                                 "alt" => $film['Film']['nom'],
@@ -11,7 +12,8 @@ foreach ($films as $film):
                         'controller' => 'films', 
                         'action' => 'view', 
                         $film['Film']['id']),
-                        array('escape' => false))."</td>"; 
+                        array('escape' => false))."</li>"; 
         
         endforeach; 
+echo "</ul>";
  ?>

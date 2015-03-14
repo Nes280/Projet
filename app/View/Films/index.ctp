@@ -1,32 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Accueil</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="SHORTCUT ICON" href="favicon.ico" /> 
-    </head>
-
-    <body>
-    <h1>Accueil</h1>
-        
+<h1>Accueil</h1>
+    <h3> A la une: </h3>
     <?php 
-        echo "<table>";
+        echo '<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">';
         foreach ($films as $film): 
-            echo    "<td>".$this->Html->link($this->Html->image(
+            echo    "<li>".$this->Html->link($this->Html->image(
                         $film['Film']['nom'].".jpg", 
                             array(
-                                "alt" => $film['Film']['nom'],
-                                "height" => "200",
-                                "width" => "150")),
+                                "alt" => $film['Film']['nom']
+                                )),
                     array(
                         'controller' => 'films', 
                         'action' => 'view', 
                         $film['Film']['id']),
-                        array('escape' => false))."</td>"; 
+                        array('escape' => false))."</li>"; 
         
         endforeach; 
-        echo "</table>";
+        echo "</ul>";
         unset($film); ?>
     
     </body>
