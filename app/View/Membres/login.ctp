@@ -1,4 +1,6 @@
-<h2>Se connecter</h2>
+<div class="row">
+	<h2>Se connecter</h2>
+</div>
 <?php echo $this->Form->create('Membre'); ?>
 	<div class="row">
 	    <div class="large-4 columns">

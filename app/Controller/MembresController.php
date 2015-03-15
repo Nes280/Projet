@@ -5,17 +5,12 @@
         public function enregistrer() {
             if($this->request->is('post'))
             {
-                //debug($this->request->data);
                 $d = $this->request->data;
                 $d['Membre']['id'] = null;
                 if(!empty($d['Membre']['mdp']))
                 {
                     $d['Membre']['mdp'] = Security::hash($d['Membre']['mdp'],null,true);
                 }
-                //debug($d);
-               /*$this->Membre->save($d, true, array('nom','prenom','username','mdp','age','administrateur'));
-                debug($this->Membre->validationErrors); //show validationErrors
-                debug($this->Membre->getDataSource()->getLog(false, false));*/
                 if($this->Membre->save($d, true, array('nom','prenom','username','mdp','age','administrateur')))
                 {
                     $this->Session->setFlash("Votre compte a bien été créé", "notif");
@@ -33,11 +28,9 @@
             {
 
                 $d = $this->Membre->findByUsername($this->request->data['Membre']['username']);
-                //print_r($d);
                 $valeur = $this->request->data;
                 $valeur['Membre']['administrateur'] = $d['Membre']['administrateur'];
                 $valeur['Membre']['mdp'] = Security::hash($valeur['Membre']['mdp'], null,true);
-                //print_r($valeur);
 
                 if(!empty($d))
                 { 
@@ -73,6 +66,29 @@
             $this->Auth->logout();
             $this->redirect($this->referer());
         }
+
+
+        public function modifier()
+        {
+
+            /*
+
+         $val = AuthComponent::user('Membre');
+         $val['...'];
+
+
+            $this->User->updateAll(
+                array('mobileNo' => "'$MobileNo'"),
+                array('email' => $email)
+            );
+            signifie : UPDATE users set mobileNo = "$mobileNo" where email = "$email"
+
+
+        */
+
+        }
+
+
 
     
 }

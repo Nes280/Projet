@@ -17,7 +17,7 @@
                 <li class="has-dropdown">
                   <a href="#">Mon Compte</a>
                   <ul class="dropdown">
-                    <?php echo "<li>".$this->Html->link('Modifier du compte', array('controller' => 'Membres','action'=>''))."</li>";
+                    <?php echo "<li>".$this->Html->link('Modifier le profil', array('controller' => 'Membres','action'=>'modifier'))."</li>";
                           echo "<li>".$this->Html->link('Noter des films', array('controller' => 'Membres','action'=>''))."</li>";
                           echo "<li>".$this->Html->link('Groupes', array('controller' => 'Membres','action'=>''))."</li>";
                     ?>
@@ -32,7 +32,7 @@
                   <a href="#">Administration</a>
                   <ul class="dropdown">
                     <?php echo "<li>".$this->Html->link('Ajout de film', array('controller' => 'Membres','action'=>''))."</li>";
-                          echo "<li>".$this->Html->link('Création de groupe', array('controller' => 'Membres','action'=>''))."</li>";
+                          echo "<li>".$this->Html->link('Création de groupe', array('controller' => 'Groupes','action'=>'creer'))."</li>";
                     ?>
                   </ul>
                 </li>
