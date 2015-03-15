@@ -34,12 +34,16 @@
 
                 $d = $this->Membre->findByUsername($this->request->data['Membre']['username']);
                 //print_r($d);
+                $valeur = $this->request->data;
+                $valeur['Membre']['administrateur'] = $d['Membre']['administrateur'];
+                $valeur['Membre']['mdp'] = Security::hash($valeur['Membre']['mdp'], null,true);
+                //print_r($valeur);
 
                 if(!empty($d))
                 { 
-                    if($d['Membre']['mdp'] == Security::hash($this->request->data['Membre']['mdp'], null,true))
+                    if($d['Membre']['mdp'] == $valeur['Membre']['mdp'])
                     {
-                        if($this->Auth->login($this->request->data))
+                        if($this->Auth->login($valeur))
                         {
                             $this->Session->setFlash("Vous êtes maintenant connecté", "notif");
                             $this->redirect('/films');

@@ -13,7 +13,32 @@
             <?php
               if(AuthComponent::user('Membre'))
               {
-                echo "<li class='active'>".$this->Html->link('Mon compte', array('controller' => 'Mashes','action'=>'add'))."</li>";
+            ?>
+                <li class="has-dropdown">
+                  <a href="#">Mon Compte</a>
+                  <ul class="dropdown">
+                    <?php echo "<li>".$this->Html->link('Modifier du compte', array('controller' => 'Membres','action'=>''))."</li>";
+                          echo "<li>".$this->Html->link('Noter des films', array('controller' => 'Membres','action'=>''))."</li>";
+                          echo "<li>".$this->Html->link('Groupes', array('controller' => 'Membres','action'=>''))."</li>";
+                    ?>
+                  </ul>
+                </li>
+            <?php
+                $val = AuthComponent::user('Membre');
+                if($val['administrateur'] == true)
+                {
+            ?>
+                <li class="has-dropdown">
+                  <a href="#">Administration</a>
+                  <ul class="dropdown">
+                    <?php echo "<li>".$this->Html->link('Ajout de film', array('controller' => 'Membres','action'=>''))."</li>";
+                          echo "<li>".$this->Html->link('Création de groupe', array('controller' => 'Membres','action'=>''))."</li>";
+                    ?>
+                  </ul>
+                </li>
+
+              <?php
+                }
                 echo "<li class='active'>".$this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'))."</li>";
 
               }
