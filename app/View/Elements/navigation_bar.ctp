@@ -19,7 +19,7 @@
                   <ul class="dropdown">
                     <?php echo "<li>".$this->Html->link('Modifier le profil', array('controller' => 'Membres','action'=>'modifier'))."</li>";
                           echo "<li>".$this->Html->link('Noter des films', array('controller' => 'Membres','action'=>''))."</li>";
-                          echo "<li>".$this->Html->link('Groupes', array('controller' => 'Membres','action'=>''))."</li>";
+                          echo "<li>".$this->Html->link('Mes Groupes', array('controller' => 'Membres','action'=>''))."</li>";
                     ?>
                   </ul>
                 </li>
@@ -39,8 +39,8 @@
 
               <?php
                 }
+                echo "<li>".$this->Html->link('Groupe', array('controller' => 'Groupes','action'=>'index'))."</li>";
                 echo "<li class='active'>".$this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'))."</li>";
-
               }
               else
               {
