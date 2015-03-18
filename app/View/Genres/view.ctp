@@ -3,15 +3,16 @@
 <?php
 	foreach ($filmsGenre as $f ):
          echo "<li>".$this->Html->link($this->Html->image(
-                        $f['Film']['nom'].".jpg", 
+                        $f['films']['nom'].".jpg", 
                             array(
-                                "alt" => $f['Film']['nom']
+                                "alt" => $f['films']['nom']
                                 )),
                     array(
                         'controller' => 'films', 
                         'action' => 'view', 
-                        $f['Film']['id']),
+                        $f['films']['id']),
                         array('escape' => false))."</li>";
         endforeach;
+        debug($filmsGenre);
  ?>
 </ul>
