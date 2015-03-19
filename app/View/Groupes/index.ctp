@@ -11,14 +11,16 @@
     <h1>Groupes</h1>
     <nav>
         <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-    <?php foreach ($groupe as $groupes): 
+    <?php foreach ($groupes as $groupe): 
          echo    "<li>".$this->Html->link(
-                            $groupes['Groupe']['id'],
-                            array('controller' => 'Groupes', 'action' => 'view')
+                            $groupe['Groupe']['nom'],
+                            array('controller' => 'Groupes', 
+                                    'action' => 'view', 
+                                    $groupe['Groupe']['id'])
                         )
                         ."</li>";
         endforeach; 
-        unset($groupes); ?>
+        unset($groupe); ?>
     </ul>
     </body>
 </html>

@@ -5,7 +5,7 @@
 
         public function index()
         {
-            $this->set('groupe', $this->Groupe->find('all'));
+            $this->set('groupes', $this->Groupe->find('all'));
         }
 
         public function view($id = null) {
