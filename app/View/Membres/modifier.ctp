@@ -6,7 +6,6 @@
 	    <div class="large-4 columns">
 			<?php echo $this->Form->input('nom',array('label' =>"Nom", "type"=>"text", "maxlength"=>"30", "value"=>$membre['Membre']['nom'])); ?>
 			<?php echo $this->Form->input('prenom',array('label' =>"Prenom", "type"=>"text", "maxlength"=>"30", "value"=>$membre['Membre']['prenom'])); ?>
-			<?php echo $this->Form->input('mdp',array('label' =>"Mot de passe", "type"=>"password")); ?>
 			<?php echo $this->Form->input('age',array('label' =>"Age", "type"=>"number", "min"=>"10", "max"=>"110", "value"=>$membre['Membre']['age'])); ?>
 		</div>
 	</div>
@@ -17,5 +16,9 @@
 	</div>
 	<div class="row">
 		<?php echo $this->Form->end('Modifier'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $this->Html->link('Modifier le mot de passe', array('controller' => 'Membres','action'=>'modifiermdp'), array('class' => 'button success')); ?>
 	</div>
 

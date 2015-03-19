@@ -39,8 +39,8 @@
 
               <?php
                 }
-                echo "<li>".$this->Html->link('Groupe', array('controller' => 'Groupes','action'=>'index'))."</li>";
-                echo "<li class='active'>".$this->Html->link('Deconnexion', array('controller' => 'Membres','action'=>'logout'))."</li>";
+                echo "<li>".$this->Html->link('Groupes', array('controller' => 'Groupes','action'=>'index'))."</li>";
+                echo "<li class='active'>".$this->Html->link('Déconnexion', array('controller' => 'Membres','action'=>'logout'))."</li>";
               }
               else
               {
