@@ -71,9 +71,14 @@
         public function modifier()
         {
 
-            /*
+            $val = AuthComponent::user('Membre');
+            $membre = $this->Membre->findByUsername($val['username']);
 
-         $val = AuthComponent::user('Membre');
+            $this->set('membre', $membre);
+
+            
+
+         /*$val = AuthComponent::user('Membre');
          $val['...'];
 
 
