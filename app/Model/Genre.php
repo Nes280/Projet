@@ -2,7 +2,15 @@
 	App::uses('AppModel', 'Model');
 	class Genre extends AppModel 
 	{
-		public $hasMany = array('Film');
+		public $hasAndBelongsToMany = array(
+			'Film'=>
+				array(
+					'className'=>'Film',
+					'joinTable'=>'films_genres'
+					)
+				);
+
+
 		
 	}
 

@@ -17,15 +17,37 @@
         }
         $this->set('genre', $genre);
 
-        //$uses=array('Genre','Film','Films_Genre');
-
-        $lesFilms = $this->Genre->query("
+        /*$lesFilms = $this->Genre->query('
             SELECT films.id, films.nom
             FROM films, genres, films_genres
             WHERE films_genres.film_id=films.id
             AND films_genres.genre_id=genres.id
-            AND genres.id = 2"
+            AND genres.id = $Genre["Genre"]["id"]'
+            );*/
+
+       $options['joins']=array(
+             array(
+                'table' => 'genres'),
+            array(
+                'table' => 'films_genres',
+                'alias' => 'FG',
+                'conditions' => array('FG.genre_id = genres.id')
+                ),
+            array(
+                'table' => 'films',
+                'alias' => 'F',
+                'conditions' => array('FG.film_id = F.id')
+                )
             );
+        $options['conditions'] = array(
+            'genres.id' => $id
+            );
+        $options['fields'] = array(
+            'DISTINCT F.id', 'F.nom'
+            );
+
+        $lesFilms = $this->Genre->Film->find('all',$options);
+
         $this->set('filmsGenre',$lesFilms);
     }
 }
