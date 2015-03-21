@@ -23,5 +23,15 @@
 				),
 			)
 		);
+
+		public $hasAndBelongsToMany = array(
+			'Membre'=>
+				array(
+					'className'=>'Membre',
+					'joinTable'=>'membres_groupes'
+					)
+				);
+
+
 	}
 ?>

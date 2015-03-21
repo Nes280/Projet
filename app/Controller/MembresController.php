@@ -124,11 +124,6 @@
             }
         }
 
-        /*public function rejoindregroupe()
-        {
-
-        }*/
-
     }
 ?>
 
