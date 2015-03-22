@@ -5222,3 +5222,8 @@ th.hide-for-touch {
 
 .touch th.show-for-touch {
   display: table-cell !important; }
+
+.imgTitre{
+  height: 20%;
+  width: 20%;
+}

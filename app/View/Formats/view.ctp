@@ -3,7 +3,7 @@
 <?php
 	foreach ($filmsFormat as $f ):
          echo "<li>".$this->Html->link($this->Html->image(
-                        $f['Film']['nom'].".jpg", 
+                        "Films/".$f['Film']['nom'].".jpg", 
                             array(
                                 "alt" => $f['Film']['nom']
                                 )),
