@@ -127,6 +127,44 @@
             );*/
         }
 
+
+        public function mesgroupes()
+        {
+            $val = AuthComponent::user('Membre');
+            $membre = $this->Groupe->Membre->findByUsername($val['username']);
+
+
+            $mg = $this->Groupe->query("
+                SELECT G.id, G.nom, G.description
+                FROM membres_groupes MG, Groupes G
+                WHERE MG.groupe_id = G.id and membre_id = {$membre['Membre']['id']};"
+            );
+
+            if(empty($mg))
+            {
+                $this->Session->setFlash("Vous n'êtes membre d'aucun groupe", "notif");
+
+            }
+            else
+            {
+                $this->set('groupes', $mg);
+
+            }
+        }
+
+        public function affichagegroupe($id = null) {
+            if (!$id) {
+                throw new NotFoundException(__('Invalid groupe'));
+            }
+
+            $groupe = $this->Groupe->findById($id);
+            if (!$groupe) {
+                throw new NotFoundException(__('Invalid groupe'));
+            }
+            $this->set('groupe', $groupe);
+        }
+
+
 	}
 
 ?>
