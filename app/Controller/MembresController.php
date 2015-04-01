@@ -22,11 +22,11 @@
             }
         }
 
+
         public function login()
         {
             if($this->request->is('post'))
             {
-
                 $d = $this->Membre->findByUsername($this->request->data['Membre']['username']);
                 $valeur = $this->request->data;
                 $valeur['Membre']['administrateur'] = $d['Membre']['administrateur'];
@@ -47,8 +47,6 @@
                         $this->Session->setFlash("Mot de passe incorrect", "notif");
 
                     }
-
-
                 }
                 else
                 {
@@ -56,29 +54,23 @@
                 }
      
             }
-
-
         }
 
 
         public function logout()
         {
             $this->Auth->logout();
-            //$this->redirect($this->referer());
             $this->redirect('/films');
-
         }
 
 
         public function modifier()
         {
-
             $val = AuthComponent::user('Membre');
             $membre = $this->Membre->findByUsername($val['username']);
             $this->set('membre', $membre);
             if($this->request->is('post'))
             {
-                //debug($this->request->data);
                 $this->Membre->updateAll(
                         array('nom' => "'{$this->request->data['Membre']['nom']}'" ,
                                 'prenom' => "'{$this->request->data['Membre']['prenom']}'",
@@ -87,12 +79,25 @@
                          ),
                         array('username' => $membre['Membre']['username'] )
                 );
-                /*if($val['administrateur'] != $this->request->data['Membre']['administrateur'])
+                if($val['administrateur'] != $this->request->data['Membre']['administrateur'])
                 {
-                    probleme si on modifie l'administration, dans le tableau AuthComponent::user('Membre') ca ne va pas changer donc on aura toujours l'onglet d'administration
-                }*/
+                    $d['Membre']['username'] = $val['username'];
+                    $d['Membre']['mdp'] = $val['mdp'];
+                    $d['Membre']['administrateur'] = $this->request->data['Membre']['administrateur'];
+                    if($this->Auth->login($d))
+                    {
+                        $this->Session->setFlash("Vous avez modifier vos informations", "notif");
+                        $this->redirect('/films');
+                    }
+                }
+                else
+                {
+                    $this->Session->setFlash("Vous avez modifier vos informations", "notif");
+                    $this->redirect('/films');
+                }
             }
         }
+
 
         public function modifiermdp()
         {
@@ -101,7 +106,6 @@
             $this->set('membre', $membre);
             if($this->request->is('post'))
             {
-                //debug($this->request->data);
                 $d=$this->request->data;
                 $d['Membre']['ancien_mdp']= Security::hash($d['Membre']['ancien_mdp'], null,true);
                 $d['Membre']['mdp']= Security::hash($d['Membre']['mdp'], null,true);
@@ -116,11 +120,16 @@
                 {
                      $this->Session->setFlash("Ancien mot de passe incorrect", "notif");
                 }
-                
-                /*if($val['administrateur'] != $this->request->data['Membre']['administrateur'])
+                  
+                $valeur['Membre']['username'] = $val['username'];
+                $valeur['Membre']['mdp'] = $d['Membre']['mdp'];
+                $valeur['Membre']['administrateur'] =$val['administrateur'] ;
+                if($this->Auth->login($valeur))
                 {
-                    probleme si on modifie le mot de passe, dans le tableau AuthComponent::user('Membre') ca ne va pas changer
-                }*/
+                    $this->Session->setFlash("Vous avez modifier votre mot de passe", "notif");
+                    $this->redirect('/films');
+                }
+                
             }
         }
 

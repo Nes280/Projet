@@ -1,5 +1,5 @@
 <div>
 	<p>
-		<?php echo $message; ?>
+		<h3><?php echo $message; ?> </h3>
 	</p>
 </div>
