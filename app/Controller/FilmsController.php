@@ -25,6 +25,9 @@
                 'limit'=> '2'
                 )));
     }
+    public function recherche(){
+        
+    }
 }
 
 ?>

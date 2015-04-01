@@ -1,22 +1,49 @@
 <h1><?php echo $film['Film']['nom']; ?></h1>
-<?php //echo"<img src='../../app/webroot/img/".$film['Film']['nom'].".jpg' height='740' width='500'>";
-	echo $this->Html->image("Films/".$film['Film']['nom'].".jpg",
-		array(
-			"alt"=>$film['Film']['nom'],
-			"class"=>"imgTitre"));
 
-	if($film['Film']['video'] !="")
-	{
-		echo "<a href='#'' data-reveal-id='video' class='radius button'>Voir la vidéo</a>";
-
-		echo "	<div id='video' class='reveal-modal large' data-reveal aria-labelledby='videoTitre' aria-hidden='true' role='dialog'>
-  					<h2 id='videoTitre'>".$film['Film']['nom']."</h2>
-  					<div class='flex-video widescreen '>
-    					<iframe width='1280' height='720' src='".$film['Film']['video']."' framebordeer='0' ></iframe>
-  					</div>
-  				</div>";
-	}
-?>
+<div class="row" data-equalizer="foo">
+	<div class="medium-4 columns">
+	    <div  >
+	      <?php
+	      	echo $this->Html->image("Films/".$film['Film']['nom'].".jpg",
+				array(
+					"alt"=>$film['Film']['nom'],
+					"data-equalizer-watch"=>"foo"));
+	      ?>
+	    </div>
+	</div>
+	<div class="medium-4 columns">
+	    <div  data-equalizer-watch="foo">
+	      <?php
+	      	if($film['Film']['video'] !="")
+			{
+				echo "<a href='#' data-reveal-id='video' class='radius button' data-equalizer-watch='foo'>Voir la vidéo</a>	
+						<div id='video' class='reveal-modal large' data-reveal aria-labelledby='videoTitre' aria-hidden='true' role='dialog'>
+		  					<h2 id='videoTitre'>".$film['Film']['nom']."</h2>
+		  					<div class='flex-video widescreen '>
+		    					<iframe width='1280' height='720' src='".$film['Film']['video']."' framebordeer='0' ></iframe>
+		  					</div>
+		  				</div>";
+			}
+	      ?>
+	    </div>
+	</div>
+	<div class="medium-4 columns">
+	    <div>
+	      <?php
+	      	if($film['Film']['site'] !="")
+			{
+				$site =$film['Film']['site'];
+		  		echo"<a href='http://$site' class='radius button' target='_blank' data-equalizer-watch='foo'>Aller sur le site officiel</a>";
+			}
+	      ?>
+	    </div>
+	</div>
+	<div class="medium-4 columns">
+	    <div class="callout panel">
+	      <h3 data-equalizer-watch="foo">Note:4/5</h3>
+	    </div>
+	</div>
+</div>
 
 <?php
 foreach ($film['Film'] as $f => $v) {
@@ -29,7 +56,7 @@ foreach ($film['Film'] as $f => $v) {
 		elseif ($f=='note') echo "<h5>Note:</h5><p>$v</p>";
 		elseif ($f=='nbSaisons') echo "<h5>Nombre de saisons:</h5><p>$v</p>";
 		elseif ($f=='nbEpisodes') echo "<h5>Nombre d'épisodes:</h5><p>$v</p>";
-		elseif ($f=='site') echo "<h5>Site web:</h5><p><a href='$v'>$v</a></p>";
+		//elseif ($f=='site') echo "<h5>Site web:</h5><p><a href='$v'>$v</a></p>";
 	}
 }
 ?>

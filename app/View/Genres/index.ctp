@@ -10,12 +10,14 @@
     <body>
     <h1>Genres de films</h1>
     <nav>
-        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5">
     <?php foreach ($genres as $genre): 
          echo    "<li>".$this->Html->link($this->Html->image(
                         "Genres/".$genre['Genre']['genre'].".png", 
                             array(
-                                "alt" => $genre['Genre']['genre']
+                                "alt" => $genre['Genre']['genre'],
+                                  "width" => "50%",
+                                "height" => "50%"
                                 )),
                     array(
                         'controller' => 'genres', 

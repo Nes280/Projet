@@ -57,6 +57,7 @@
         <ul class="dropdown">
           <?php echo "<li>".$this->Html->link('Genre de films', array('controller' => 'genres','action'=>'index'))."</li>";
                 echo "<li>".$this->Html->link('Format de films', array('controller' => 'formats','action'=>'index'))."</li>";
+                echo "<li>".$this->Html->link('Recherche avancée', array('controller' => 'films','action'=>'recherche'))."</li>";
           ?>
         </ul>
       </li>
@@ -67,7 +68,16 @@
               'action'=>'classement'));
           ?>
         </li>
-        
+        <!--li class="has-form">
+          <div class="row collapse">
+            <div class="large-8 columns">
+              <input type="text" placeholder="Find Stuff">
+            </div>
+            <div class="large-4 columns">
+              <a href="#" class="alert button expand">Search</a>
+            </div>
+          </div>
+        </li-->
       </ul>
     </section>
   </nav>
