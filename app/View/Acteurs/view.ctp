@@ -1,0 +1,1 @@
+<h1><?php echo $acteur['Acteur']['prenom'],' ', $acteur['Acteur']['nom']?> </h1>

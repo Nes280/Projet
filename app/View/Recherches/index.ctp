@@ -66,10 +66,11 @@ $(document).ready( function() {
 	//recherche des résultats dans la base de données
 	$result =   mysql_query( 'SELECT nom, id
 	                          FROM films
-	                          WHERE nom LIKE \'' . safe( $_GET['q'] ) . '%\'LIMIT 0,20' );
-	$result2 = mysql_query( 'SELECT nom, id
+	                          WHERE nom LIKE \'' . safe( $_GET['q'] ) . '%\'' );
+	$result2 = mysql_query( 'SELECT nom,prenom, id
 	                          FROM acteurs
-	                          WHERE nom LIKE \'' . safe( $_GET['q'] ) . '%\'LIMIT 0,20' );
+	                          WHERE nom LIKE \'' . safe( $_GET['q'] ) . '%\'
+	                          OR prenom LIKE \'' . safe( $_GET['q'] ) . '%\'');
 	 
 	// affichage d'un message "pas de résultats"
 	if( (mysql_num_rows( $result ) == 0) && (mysql_num_rows( $result2 ) == 0))
@@ -109,8 +110,9 @@ $(document).ready( function() {
 		        <div class="article-result">
 		            <h3>
 		            	<?php 
+		            		$nom = utf8_encode( $post->prenom ).' '.utf8_encode( $post->nom );
 		            		echo $this->Html->link( 
-		            			utf8_encode( $post->nom ),
+		            			$nom,
 		            			"/acteurs/view/$post->id"); 
 		            	?>
 		            </h3>

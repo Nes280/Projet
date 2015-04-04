@@ -1,4 +1,4 @@
-<div class="contain-to-grid">
+<div><!--<div class="contain-to-grid"-->
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
@@ -57,7 +57,7 @@
         <ul class="dropdown">
           <?php echo "<li>".$this->Html->link('Genre de films', array('controller' => 'genres','action'=>'index'))."</li>";
                 echo "<li>".$this->Html->link('Format de films', array('controller' => 'formats','action'=>'index'))."</li>";
-                echo "<li>".$this->Html->link('Recherche avancée', array('controller' => 'recherches','action'=>'index'))."</li>";
+                
           ?>
         </ul>
       </li>
@@ -68,13 +68,19 @@
               'action'=>'classement'));
           ?>
         </li>
-        <!--li class="has-form">
+        <li>
+         <?php echo$this->Html->link('Recherche avancée', array('controller' => 'recherches','action'=>'index')); ?>
+        <!-- class="has-form">
           <div class="row collapse">
             <div class="large-8 columns">
-              <input type="text" placeholder="Find Stuff">
+              <input type="text" id="q" placeholder="film, acteur...">
             </div>
             <div class="large-4 columns">
-              <a href="#" class="alert button expand">Search</a>
+              <?php echo $this->Html->link(
+                  'Rechercher',
+                  ['controller' => 'recherches','action'=>'index'],
+                  ['class'=>'alert button expand']
+              );?>
             </div>
           </div>
         </li-->
