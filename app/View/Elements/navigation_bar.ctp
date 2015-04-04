@@ -57,7 +57,7 @@
         <ul class="dropdown">
           <?php echo "<li>".$this->Html->link('Genre de films', array('controller' => 'genres','action'=>'index'))."</li>";
                 echo "<li>".$this->Html->link('Format de films', array('controller' => 'formats','action'=>'index'))."</li>";
-                echo "<li>".$this->Html->link('Recherche avancée', array('controller' => 'films','action'=>'recherche'))."</li>";
+                echo "<li>".$this->Html->link('Recherche avancée', array('controller' => 'recherches','action'=>'index'))."</li>";
           ?>
         </ul>
       </li>
