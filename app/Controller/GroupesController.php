@@ -30,7 +30,20 @@
                 $d['Groupe']['id'] = null;
                 if($this->Groupe->save($d, true, array('nom','description')))
                 {
+                    $groupe = $this->Groupe->findByNom($d['Groupe']['nom']);
+                    $val = AuthComponent::user('Membre');
+                    $membre = $this->Groupe->Membre->findByUsername($val['username']);
+                    $valeur['membre_id']=$membre['Membre']['id'];
+                    $valeur['groupe_id']=$groupe['Groupe']['id'];
+                    $this->loadModel('MembresGroupes');
+                    $this->MembresGroupes->create();
+                    if($this->MembresGroupes->save($valeur, true, array('membre_id','groupe_id')))
+                    {
+                        $this->Session->setFlash("Vous avez rejoint le groupe", "notif");
+                    }
                     $this->Session->setFlash("Le groupe a bien été créé", "notif");
+                    $this->redirect('/films');
+
                 }
                 else
                 {
@@ -42,7 +55,6 @@
 
         public function rejoindregroupe($id=null)
         {
-
             if (!$id) {
                 throw new NotFoundException(__('Invalid groupe'));
             }
@@ -75,6 +87,8 @@
                 if($this->MembresGroupes->save($d, true, array('membre_id','groupe_id')))
                 {
                     $this->Session->setFlash("Vous avez rejoint le groupe", "notif");
+                    $this->redirect('/films');
+
                 }
                 else
                 {
@@ -84,6 +98,8 @@
             else
             {
                 $this->Session->setFlash("Vous êtes déjà membre", "notif");
+                $this->redirect('/films');
+
             }
         }
 
@@ -122,6 +138,47 @@
                 throw new NotFoundException(__('Invalid groupe'));
             }
             $this->set('groupe', $groupe);
+        }
+
+
+        public function desinscriregroupe($id = null) {
+            if (!$id) {
+                throw new NotFoundException(__('Invalid groupe'));
+            }
+
+            $groupe = $this->Groupe->findById($id);
+            if (!$groupe) {
+                throw new NotFoundException(__('Invalid groupe'));
+            }
+
+            $val = AuthComponent::user('Membre');
+            $membre = $this->Groupe->Membre->findByUsername($val['username']);
+
+            $this->set('groupe', $groupe);
+            $this->set('membre', $membre);
+
+            $d['membre_id']=$membre['Membre']['id'];
+            $d['groupe_id']=$groupe['Groupe']['id'];
+
+            $this->loadModel('MembresGroupes');
+            $this->MembresGroupes->create();
+
+            $mg = $this->MembresGroupes->query("
+                SELECT *
+                FROM membres_groupes
+                WHERE membre_id = {$d['membre_id']} AND groupe_id = {$d['groupe_id']};"
+            );
+            if(empty($mg))
+            {
+                $this->Session->setFlash("Vous n'êtes pas membres", "notif");
+
+            }
+            else
+            {
+                $supp = $this->MembresGroupes->query("DELETE FROM membres_groupes WHERE membre_id = {$d['membre_id']} AND groupe_id = {$d['groupe_id']} ");
+                $this->Session->setFlash("Vous n'êtes plus membre de ce groupe", "notif");
+                $this->redirect('/films');
+            }
         }
 
 	}
