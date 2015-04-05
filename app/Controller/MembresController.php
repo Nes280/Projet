@@ -7,17 +7,28 @@
             {
                 $d = $this->request->data;
                 $d['Membre']['id'] = null;
-                if(!empty($d['Membre']['mdp']))
+                if(!empty($d['Membre']['mdp']) && !empty($d['Membre']['mdp2']))
                 {
                     $d['Membre']['mdp'] = Security::hash($d['Membre']['mdp'],null,true);
+                    $d['Membre']['mdp2'] = Security::hash($d['Membre']['mdp2'],null,true);
                 }
-                if($this->Membre->save($d, true, array('nom','prenom','username','mdp','age','administrateur')))
+                if($d['Membre']['mdp'] == $d['Membre']['mdp2'])
                 {
-                    $this->Session->setFlash("Votre compte a bien été créé", "notif");
+                    if($this->Membre->save($d, true, array('nom','prenom','username','mdp','age','administrateur')))
+                    {
+                        $this->Session->setFlash("Votre compte a bien été créé", "notif");
+                        $this->redirect('/membres/login');
+
+                    }
+                    else
+                    {
+                        $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
+                    }
                 }
                 else
                 {
-                    $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
+                    $this->Session->setFlash("Mot de passe differents", "notif");
+ 
                 }
             }
         }

@@ -34,6 +34,11 @@
 					'rule' => 'NotEmpty',
 					'message' => 'Vous devez entrer un mot de passe',
 					'allowEmpty'=>false
+			),
+			'mdp2' => array(
+				'rule' => 'NotEmpty',
+				'message' => 'Vous devez entrer un mot de passe',
+				'allowEmpty'=>false
 			)
 		);
 
