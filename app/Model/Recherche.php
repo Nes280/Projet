@@ -5,6 +5,7 @@
 		//$useTable = false;
 		//public $hasMany = array('Film');
 		
+		
 	}
 
 ?>

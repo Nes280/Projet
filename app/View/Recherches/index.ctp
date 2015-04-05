@@ -1,13 +1,13 @@
 <h1>Recherche avancée</h1>
 
 <!--debut du formulaire-->
-<form class="ajax" action="#" method="get">
+<form class="has-form" action="" method="get">
 	<p>
 		<div class="row">
     		<div class="large-12 columns">
       			<div class="row collapse">
         			<div class="small-10 columns">
-          				<input type="text" name="q" id="q" placeholder="Rechercher">
+          				<input type="text" name="q" id="q" placeholder="Rechercher un film, un acteur...">
         			</div>
         				<div class="small-2 columns">
           					<input type="submit" class="button postfix" value="Go"></a>
@@ -17,7 +17,7 @@
   		</div>
   	</p>
 </form>
-<!--fin du formulaire-->
+
  
 <!--preparation de l'affichage des resultats-->
 <div id="results"></div>
@@ -35,8 +35,8 @@ $(document).ready( function() {
       // on envoie la valeur recherché en GET au fichier de traitement
       $.ajax({
   	type : 'GET', // envoi des données en GET ou POST
-	url : '#' , // url du fichier de traitement
-	data : 'q='+$(this).val() , // données à envoyer en  GET ou POST
+	url : '' , // url du fichier de traitement
+	data : $('q').val() , // données à envoyer en  GET ou POST
 	beforeSend : function() { // traitements JS à faire AVANT l'envoi
 		$field.after('<img src="spinner.gif" alt="loader" id="ajax-loader" />'); // ajout d'un loader pour signifier l'action
 	},
@@ -54,24 +54,6 @@ $(document).ready( function() {
 
 	if ($_GET['q']) {
 
-	//connexion à la base de données 
-	define('DB_NAME', 'filmoteque');
-	define('DB_USER', 'root');
-	define('DB_PASSWORD', '');
-	define('DB_HOST', 'localhost');
-	 
-	$link   =   mysql_connect( DB_HOST , DB_USER , DB_PASSWORD );
-	mysql_select_db( DB_NAME , $link );
-	 
-	//recherche des résultats dans la base de données
-	$result =   mysql_query( 'SELECT nom, id
-	                          FROM films
-	                          WHERE nom LIKE \'' . safe( $_GET['q'] ) . '%\'' );
-	$result2 = mysql_query( 'SELECT nom,prenom, id
-	                          FROM acteurs
-	                          WHERE nom LIKE \'' . safe( $_GET['q'] ) . '%\'
-	                          OR prenom LIKE \'' . safe( $_GET['q'] ) . '%\'');
-	 
 	// affichage d'un message "pas de résultats"
 	if( (mysql_num_rows( $result ) == 0) && (mysql_num_rows( $result2 ) == 0))
 	{
@@ -123,15 +105,5 @@ $(document).ready( function() {
 	}
 }
  
-/*****
-fonctions
-*****/
-function safe($var)
-{
-	$var = mysql_real_escape_string($var);
-	$var = addcslashes($var, '%_');
-	$var = trim($var);
-	$var = htmlspecialchars($var);
-	return $var;
-}
+
 ?>
