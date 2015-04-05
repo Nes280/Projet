@@ -26,7 +26,27 @@
                 )));
     }
     public function recherche(){             
+    }
+
+    public function ajoutfilm(){
+        if($this->request->is('post'))
+        {
+            debug($this->request->data);
+            $d = $this->request->data;
+            $d['Film']['id'] = null;
+            
+            if($this->Film->save($d, true, array('nom','synopsis','budget','duree','date','nbSaisons', 'nbEpisodes')))
+            {
+                $this->Session->setFlash("Votre film a bien été créé", "notif");
+            }
+            else
+            {
+                $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
             }
         }
+    }
+
+
+    }
 
 ?>

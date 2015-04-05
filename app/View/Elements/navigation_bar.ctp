@@ -31,7 +31,7 @@
                 <li class="has-dropdown">
                   <a href="#">Administration</a>
                   <ul class="dropdown">
-                    <?php echo "<li>".$this->Html->link('Ajout de film', array('controller' => 'Membres','action'=>''))."</li>";
+                    <?php echo "<li>".$this->Html->link('Ajout de film', array('controller' => 'Films','action'=>'ajoutfilm'))."</li>";
                           echo "<li>".$this->Html->link('Création de groupe', array('controller' => 'Groupes','action'=>'creer'))."</li>";
                     ?>
                   </ul>
