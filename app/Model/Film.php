@@ -27,5 +27,13 @@
 				)
 			)
 		);
+
+		public $hasAndBelongsToMany = array(
+			'Acteur'=>
+				array(
+					'className'=>'Acteur',
+					'joinTable'=>'acteurs_films'
+					)
+				);
 	}
 ?>

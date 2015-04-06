@@ -46,6 +46,19 @@
 </div>
 
 <?php
+echo"<h5>Acteurs:</h5><ul>";
+foreach ($acteursFilm as $a ):
+         		echo '<li>'.$this->Html->link(
+         				$a['Acteur']['nom'],
+         				array(
+                        'controller' => 'acteurs', 
+                        'action' => 'view', 
+                        $a['Acteur']['id']
+                        )
+                    ).'</li>';
+    // debug($a);
+endforeach;
+echo "</ul>";
 foreach ($film['Film'] as $f => $v) {
 	if ($v != '') 
 	{

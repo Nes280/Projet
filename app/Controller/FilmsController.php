@@ -16,6 +16,31 @@
             throw new NotFoundException(__('Invalid films'));
         }
         $this->set('film', $film);
+
+        $options['joins']=array(
+             array(
+                'table' => 'films'),
+            array(
+                'table' => 'acteurs_films',
+                'alias' => 'AF',
+                'conditions' => array('AF.acteur_id = Acteur.id')
+                ),
+            array(
+                'table' => 'films',
+                'alias' => 'F',
+                'conditions' => array('AF.film_id = F.id')
+                )
+            );
+        $options['conditions'] = array(
+            'F.id' => $id
+            );
+        $options['fields'] = array(
+            'DISTINCT Acteur.id', 'Acteur.nom'
+            );
+
+        $lesActeurs = $this->Film->Acteur->find('all',$options);
+
+        $this->set('acteursFilm',$lesActeurs);
     }
 
     public function classement(){
