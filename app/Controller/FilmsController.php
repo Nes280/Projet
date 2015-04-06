@@ -25,8 +25,6 @@
                 'limit'=> '2'
                 )));
     }
-    public function recherche(){             
-    }
 
     public function ajoutfilm(){
         if($this->request->is('post'))

@@ -1,4 +1,4 @@
-<div><!--<div class="contain-to-grid"-->
+<div class="sticky"><!--<div class="contain-to-grid"-->
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">

@@ -56,7 +56,7 @@
 		<div id="footer">
 			<div class='row'>
 				<div class='large-12 columns'>
-					<p> Auteur : Elsa Martel et Niels Benichou - Année 2015 </p>
+					<p> Auteurs : Elsa Martel et Niels Benichou - Année 2015 </p>
 				</div>
 			</div>
 		</div>
