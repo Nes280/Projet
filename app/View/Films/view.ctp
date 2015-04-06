@@ -49,7 +49,7 @@
 echo"<h5>Acteurs:</h5><ul>";
 foreach ($acteursFilm as $a ):
          		echo '<li>'.$this->Html->link(
-         				$a['Acteur']['nom'],
+         				$a['Acteur']['prenom'].' '.$a['Acteur']['nom'],
          				array(
                         'controller' => 'acteurs', 
                         'action' => 'view', 
@@ -69,7 +69,7 @@ foreach ($film['Film'] as $f => $v) {
 		elseif ($f=='note') echo "<h5>Note:</h5><p>$v</p>";
 		elseif ($f=='nbSaisons') echo "<h5>Nombre de saisons:</h5><p>$v</p>";
 		elseif ($f=='nbEpisodes') echo "<h5>Nombre d'épisodes:</h5><p>$v</p>";
-		//elseif ($f=='site') echo "<h5>Site web:</h5><p><a href='$v'>$v</a></p>";
+		elseif ($f=='budget') echo "<h5>Budget:</h5><p>$v €</p>";
 	}
 }
 ?>

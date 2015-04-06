@@ -35,7 +35,7 @@
             'F.id' => $id
             );
         $options['fields'] = array(
-            'DISTINCT Acteur.id', 'Acteur.nom'
+            'DISTINCT Acteur.id', 'Acteur.nom, Acteur.prenom'
             );
 
         $lesActeurs = $this->Film->Acteur->find('all',$options);
