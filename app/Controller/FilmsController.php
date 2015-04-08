@@ -38,9 +38,15 @@
             'DISTINCT Acteur.id', 'Acteur.nom, Acteur.prenom'
             );
 
+        $optionsNote['conditions'] = array(
+            'Note.film_id' => $id
+            );
+
         $lesActeurs = $this->Film->Acteur->find('all',$options);
+        $note = $this->Film->Note->find('all',$optionsNote);
 
         $this->set('acteursFilm',$lesActeurs);
+        $this->set('note',$note);
     }
 
     public function classement(){

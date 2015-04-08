@@ -39,11 +39,60 @@
 	    </div>
 	</div>
 	<div class="medium-4 columns">
-	    <div class="callout panel">
-	      <h3 data-equalizer-watch="foo">Note:4/5</h3>
+	    <div class="callout panel" data-equalizer-watch="foo">
+	      <h3>Note:
+	      	<?php
+	      	$somme = 0;
+	      	$tour = 0;
+	      	foreach ($note as $n ):
+         		$somme += $n['Note']['note'];
+         		$tour ++;
+			endforeach;
+			$res = $somme / $tour;
+			switch ($res) {
+				case '1':
+					echo "mauvais";
+					break;
+				case '2':
+					echo "moyen";
+					break;
+				case '3':
+					echo "bon";
+					break;
+				case '4':
+					echo "très bon";
+					break;
+				case '5':
+					echo "excelent";
+					break;
+				default:
+					echo "pas de notes";
+					break;
+			}
+	      	?></h3>
+	      	<a href="#" data-reveal-id="myModal">voter</a>
+
+			<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			 <?php echo "<h2 id='modalTitle'>Voter pour ".$film['Film']['nom']." </h2>"?>
+			  <form>
+			  	<p>
+			  		<label for="note">Choisissez une note</label>
+			  		<select name="note" id="note">
+			  			<option value="1">mauvais</option>
+			  			<option value="2">moyen</option>
+			  			<option value="3">bon</option>
+			  			<option value="4">très bon</option>
+			  			<option value="5">excelent</option>
+			  		</select>
+			  	</p>
+			  	<input type="submit" value="Noter" />
+			  </form>	
+			  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			</div>	
 	    </div>
 	</div>
 </div>
+
 
 <?php
 echo"<h5>Acteurs:</h5><ul>";

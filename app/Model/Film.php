@@ -35,5 +35,10 @@
 					'joinTable'=>'acteurs_films'
 					)
 				);
+		public $hasMany = array(
+        'Note' => array(
+            'className' => 'Note'
+        )
+    );
 	}
 ?>
