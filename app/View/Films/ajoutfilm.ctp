@@ -11,11 +11,9 @@
 			<?php echo $this->Form->input('date',array('label' =>"Date", "type"=>"date")); ?>
 			<?php echo $this->Form->input('nbSaisons',array('label' =>"Nombre de saisons", "type"=>"number")); ?>
 			<?php echo $this->Form->input('nbEpisodes',array('label' =>"Nombre d'épisodes", "type"=>"number")); ?>
-
-
+			<?php echo $this->Form->input('site',array('label' =>"Site", "type"=>"text", "maxlength"=>"30")); ?>
 		</div>
 	</div>
-
 	<div class="row">
 		<?php echo $this->Form->end('Enregistrer'); ?>
 	</div>

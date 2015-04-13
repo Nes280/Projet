@@ -60,22 +60,27 @@
     public function ajoutfilm(){
         if($this->request->is('post'))
         {
-            debug($this->request->data);
             $d = $this->request->data;
             $d['Film']['id'] = null;
             
-            if($this->Film->save($d, true, array('nom','synopsis','budget','duree','date','nbSaisons', 'nbEpisodes')))
+            if($this->Film->save($d, true, array('nom','synopsis','budget','duree','date','nbSaisons', 'nbEpisodes', 'site')))
             {
                 $this->Session->setFlash("Votre film a bien été créé", "notif");
+                $film = $this->Film->findByNom($d['Film']['nom']);
+                $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteurs', $film['Film']['id']));
+
             }
             else
             {
                 $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
             }
         }
+
+
+
     }
 
 
-    }
+}
 
 ?>

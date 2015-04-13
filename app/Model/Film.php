@@ -20,10 +20,6 @@
 					'required' => true,
 					'allowEmpty'=> false,
 					'message'=>"Votre description n'est pas valide"
-				),
-				array(
-					'rule' => 'isUnique',
-					'message' => 'Ce nom est déjà pris'
 				)
 			)
 		);
