@@ -41,12 +41,19 @@
         $optionsNote['conditions'] = array(
             'Note.film_id' => $id
             );
+        $optionsDist['join'] = array(
+            array(  'table'=>'films',
+                    'conditions' => array('films.distributeur_id = Distributeur.id')
+                )
+            );
 
         $lesActeurs = $this->Film->Acteur->find('all',$options);
         $note = $this->Film->Note->find('all',$optionsNote);
+        $dist = $this->Film->Distributeur->find('all',$optionsDist);
 
         $this->set('acteursFilm',$lesActeurs);
         $this->set('note',$note);
+        $this->set('dist',$dist);
     }
 
     public function classement(){

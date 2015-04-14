@@ -112,7 +112,7 @@ endforeach;
 echo "</ul>";
 foreach ($film['Film'] as $f => $v) {
 	if ($v != '') 
-	{
+	{	
 		//$h5 = ucfirst($f);//on met une majuscule
 		if($f=='synopsis')echo "<h5>Synopsis:</h5><p>$v</p>";
 		elseif ($f=='duree') echo "<h5>Durée:</h5><p>$v minutes</p>";
@@ -120,6 +120,12 @@ foreach ($film['Film'] as $f => $v) {
 		elseif ($f=='nbSaisons') echo "<h5>Nombre de saisons:</h5><p>$v</p>";
 		elseif ($f=='nbEpisodes') echo "<h5>Nombre d'épisodes:</h5><p>$v</p>";
 		elseif ($f=='budget') echo "<h5>Budget:</h5><p>$v €</p>";
+		elseif ($f== 'distributeur_id')
+		{
+			foreach ($dist as $d) {
+				if ($d['Distributeur']['id'] == $v) echo "<h5>Distributeur:</h5><p>".$d['Distributeur']['nom']."</p> ";
+			}
+		}
 	}
 }
 ?>

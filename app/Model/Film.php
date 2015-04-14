@@ -34,7 +34,14 @@
 		public $hasMany = array(
         'Note' => array(
             'className' => 'Note'
+        	)
+    	);
+    	public $belongsTo = array(
+        'Distributeur' => array(
+            'className' => 'Distributeur',
+            'foreignKey' => 'distributeur_id'
         )
     );
+
 	}
 ?>
