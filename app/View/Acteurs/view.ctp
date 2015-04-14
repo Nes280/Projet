@@ -19,11 +19,11 @@
 			<?php
 			foreach ($filmsActeur as $f ):
          		echo '<li>'.$this->Html->link(
-         				$f['F']['nom'],
+         				$f['Film']['nom'],
          				array(
                         'controller' => 'films', 
                         'action' => 'view', 
-                        $f['F']['id']
+                        $f['Film']['id']
                         )
                     ).'</li>';
      //debug($f);

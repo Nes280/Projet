@@ -1,6 +1,6 @@
 <h1><?php echo $film['Film']['nom']; ?></h1>
 
-<div class="row" data-equalizer="foo">
+<div class="row" >
 	<div class="medium-4 columns">
 	    <div  >
 	      <?php
@@ -12,7 +12,7 @@
 	    </div>
 	</div>
 	<div class="medium-4 columns">
-	    <div  data-equalizer-watch="foo">
+	    <div>
 	      <?php
 	      	if($film['Film']['video'] !="")
 			{
@@ -39,7 +39,7 @@
 	    </div>
 	</div>
 	<div class="medium-4 columns">
-	    <div class="callout panel" data-equalizer-watch="foo">
+	    <div class="callout panel">
 	      <h3>Note:
 	      	<?php
 	      	$somme = 0;
@@ -48,7 +48,10 @@
          		$somme += $n['Note']['note'];
          		$tour ++;
 			endforeach;
-			$res = $somme / $tour;
+			if ($tour != 0) {
+				$res = $somme / $tour;
+			}
+			else $res = 0;
 			switch ($res) {
 				case '1':
 					echo "mauvais";
@@ -66,12 +69,11 @@
 					echo "excelent";
 					break;
 				default:
-					echo "pas de notes";
+					echo "pas de note";
 					break;
 			}
 	      	?></h3>
 	      	<a href="#" data-reveal-id="myModal">voter</a>
-
 			<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 			 <?php echo "<h2 id='modalTitle'>Voter pour ".$film['Film']['nom']." </h2>"?>
 			  <form>
@@ -115,7 +117,6 @@ foreach ($film['Film'] as $f => $v) {
 		if($f=='synopsis')echo "<h5>Synopsis:</h5><p>$v</p>";
 		elseif ($f=='duree') echo "<h5>Durée:</h5><p>$v minutes</p>";
 		elseif ($f=='date')echo "<h5>Date:</h5><p>".ereg_replace("([0-9]{4})-([0-9]{2})-([0-9]{2})", "\\3/\\2/\\1",$v)."</>";
-		elseif ($f=='note') echo "<h5>Note:</h5><p>$v</p>";
 		elseif ($f=='nbSaisons') echo "<h5>Nombre de saisons:</h5><p>$v</p>";
 		elseif ($f=='nbEpisodes') echo "<h5>Nombre d'épisodes:</h5><p>$v</p>";
 		elseif ($f=='budget') echo "<h5>Budget:</h5><p>$v €</p>";

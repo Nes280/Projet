@@ -23,15 +23,14 @@
                 ),
             array(
                 'table' => 'films',
-                'alias' => 'F',
-                'conditions' => array('AF.film_id = F.id')
+                'conditions' => array('AF.film_id = Film.id')
                 )
             );
         $options['conditions'] = array(
             'acteurs.id' => $id
             );
         $options['fields'] = array(
-            'DISTINCT F.id', 'F.nom'
+            'DISTINCT Film.id', 'Film.nom'
             );
 
         $lesFilms = $this->Acteur->Film->find('all',$options);
