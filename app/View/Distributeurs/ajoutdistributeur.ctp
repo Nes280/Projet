@@ -19,6 +19,6 @@
 
 	<?php echo $this->Html->link('Ajout du pays', array('controller' => 'Pays','action'=>'ajoutpays', $film['Film']['id']), array('class' => 'button success')); ?>
 
-	<?php echo $this->Html->link('Ajout du réalisateurs', array('controller' => 'Realisateurs','action'=>'ajoutrealisateur', $film['Film']['id']), array('class' => 'button success')); ?>
+	<?php echo $this->Html->link('Ajout du réalisateur', array('controller' => 'Realisateurs','action'=>'ajoutrealisateur', $film['Film']['id']), array('class' => 'button success')); ?>
 
 	<?php echo $this->Html->link('Ajout du producteur', array('controller' => 'Producteurs','action'=>'ajoutproducteur', $film['Film']['id']), array('class' => 'button success')); ?>

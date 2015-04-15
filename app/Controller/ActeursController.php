@@ -39,7 +39,7 @@
 	    }
 
 
-        public function ajoutacteurs($id=null){
+        public function ajoutacteur($id=null){
             if (!$id) {
                 throw new NotFoundException(__('Film non trouvé'));
             }
@@ -79,7 +79,7 @@
                     $this->ActeursFilms->create();
                     if($this->ActeursFilms->save($val, true, array('film_id', 'acteur_id')))
                     {
-                        $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteurs', $id));
+                        $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteur', $id));
                     }
                     else
                     {

@@ -34,6 +34,11 @@
 				array(
 					'className'=>'Genre',
 					'joinTable'=>'films_genres'
+					), 
+			'Realisateur'=>
+				array(
+					'className'=>'Realisateur',
+					'joinTable'=>'films_realisateurs'
 					)
 				);
 		public $hasMany = array(

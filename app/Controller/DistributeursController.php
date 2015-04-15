@@ -51,7 +51,7 @@
                         array('id' => $idfilm)
                 ))
                 {
-                    $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteurs', $id));
+                    $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteur', $id));
    
                 }
                 else

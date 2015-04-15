@@ -6,9 +6,14 @@
             throw new NotFoundException(__('Film non trouvé'));
         }
         $idfilm = $id;
-        $film = $this->Pays->Film->findById($idfilm);
+        $this->loadModel('Films');
+        $this->Films->create();
+        $film = $this->Films->findById($idfilm);
         $this->set('film', $film);
         $d = $this->request->data;
+
+        $this->loadModel('Pays');
+        $this->Pays->create();
 
         if($this->request->is('post'))
         {

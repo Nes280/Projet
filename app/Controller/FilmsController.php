@@ -74,7 +74,7 @@
             {
                 $this->Session->setFlash("Votre film a bien été créé", "notif");
                 $film = $this->Film->findByNom($d['Film']['nom']);
-                $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteurs', $film['Film']['id']));
+                $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteur', $film['Film']['id']));
 
             }
             else
