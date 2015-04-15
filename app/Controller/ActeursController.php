@@ -44,7 +44,8 @@
                 throw new NotFoundException(__('Film non trouvé'));
             }
             $idfilm = $id;
-            debug($idfilm);
+            $film = $this->Acteur->Film->findById($idfilm);
+            $this->set('film', $film);
             $d = $this->request->data;
 
             if($this->request->is('post'))
@@ -57,7 +58,6 @@
                 {
                     if($this->Acteur->save($d, true, array('nom','prenom','biographie')))
                     {
-                        $this->Session->setFlash("Votre acteur a bien été créé", "notif");
                         $valeur = 1;
                     }
                     else
@@ -73,11 +73,8 @@
                 if($valeur == 1)
                 {
                     $res = $this->Acteur->query("SELECT id FROM acteurs WHERE nom='{$d['Acteur']['nom']}' AND prenom='{$d['Acteur']['prenom']}';");
-                    debug($res);
                     $val['film_id']=$idfilm;
-                    $val['acteur_id'] = $res['acteurs']['id'];
-                    debug($val);
-
+                    $val['acteur_id'] = $res['0']['acteurs']['id'];
                     $this->loadModel('ActeursFilms');
                     $this->ActeursFilms->create();
                     if($this->ActeursFilms->save($val, true, array('film_id', 'acteur_id')))
@@ -89,10 +86,7 @@
                         $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
 
                     }
-
                 }
-                
-
             }
         }
    	}

@@ -5,7 +5,7 @@
 	<div class="row">
 	    <div class="large-4 columns">
 			<?php echo $this->Form->input('nom',array('label' =>"Nom", "type"=>"text", "maxlength"=>"30", "value"=>$membre['Membre']['nom'])); ?>
-			<?php echo $this->Form->input('prenom',array('label' =>"Prenom", "type"=>"text", "maxlength"=>"30", "value"=>$membre['Membre']['prenom'])); ?>
+			<?php echo $this->Form->input('prenom',array('label' =>"Prénom", "type"=>"text", "maxlength"=>"30", "value"=>$membre['Membre']['prenom'])); ?>
 			<?php echo $this->Form->input('age',array('label' =>"Age", "type"=>"number", "min"=>"10", "max"=>"110", "value"=>$membre['Membre']['age'])); ?>
 		</div>
 	</div>
