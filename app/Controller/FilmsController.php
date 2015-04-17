@@ -104,7 +104,7 @@
         $this->set('films', $this->Film->find('all',
             array(
                 'order'=> 'note DESC',
-                'limit'=> '2'
+                'limit'=> '5'
                 )));
     }
 
