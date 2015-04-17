@@ -114,3 +114,12 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+Inflector::rules(
+    'singular', 
+    array(
+        'rules' => array( 
+            '/(.*)pays$/i' => '\1pays' 
+        )
+    )
+);
+

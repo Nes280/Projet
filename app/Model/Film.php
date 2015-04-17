@@ -39,6 +39,11 @@
 				array(
 					'className'=>'Realisateur',
 					'joinTable'=>'films_realisateurs'
+					),
+			'Pays'=>
+				array(
+					'className'=>'Pays',
+					'joinTable'=>'films_pays'
 					)
 				);
 		public $hasMany = array(

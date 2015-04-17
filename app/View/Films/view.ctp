@@ -97,7 +97,7 @@
 
 
 <?php
-echo"<h5>Acteurs:</h5><ul>";
+echo'<h5>Acteurs:</h5><ul class="inline-list">';
 foreach ($acteursFilm as $a ):
          		echo '<li>'.$this->Html->link(
          				$a['Acteur']['prenom'].' '.$a['Acteur']['nom'],
@@ -128,7 +128,7 @@ foreach ($film['Film'] as $f => $v) {
 		}
 	}
 }
-echo "<h5>Realisateur:</h5><ul>";
+echo '<h5>Realisateur:</h5><ul class="inline-list">';
 foreach ($real as $r) {
 	//debug($r);
 	echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
@@ -139,7 +139,16 @@ foreach ($real as $r) {
                         )
                     ).'</li>';
 }
+echo '</ul><h5>Pays:</h5><ul class="inline-list">';
+foreach ($pays as $p) {
+	echo "<li>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
+				array(
+					"alt"=>$p['Pays']['pays'],
+					"data-equalizer-watch"=>"foo"))."</li>";
+
+}
 echo "</ul>";
+
 ?>
 <!--p><?php echo $film['Film']['synopsis']; ?></p>
 <h5>Durée :</h5>
