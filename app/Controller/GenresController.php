@@ -84,7 +84,7 @@
 
             if($valeur == 1)
             {
-                $res = $this->Genre->query("SELECT id FROM genres WHERE genre='{$d['Genre']['genre']}';");
+                $res = $this->Genre->query("SELECT * FROM genres WHERE genre='{$d['Genre']['genre']}';");
                 $val['film_id']=$idfilm;
                 $val['genre_id'] = $res['0']['genres']['id'];
                 $this->loadModel('FilmsGenres');

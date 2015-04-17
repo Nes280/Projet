@@ -46,6 +46,7 @@
             $idfilm = $id;
             $film = $this->Acteur->Film->findById($idfilm);
             $this->set('film', $film);
+            $this->set('acteurs', $this->Acteur->find('all'));
             $d = $this->request->data;
 
             if($this->request->is('post'))
@@ -53,12 +54,14 @@
                 $d['Acteur']['id'] = null;
                 $valeur = 0;
                 $resultat = $this->Acteur->query("SELECT id FROM acteurs WHERE nom='{$d['Acteur']['nom']}' AND prenom='{$d['Acteur']['prenom']}';");
+                debug($resultat);
 
                 if(empty($resultat))
                 {
                     if($this->Acteur->save($d, true, array('nom','prenom','biographie')))
                     {
                         $valeur = 1;
+
                     }
                     else
                     {
@@ -72,7 +75,7 @@
 
                 if($valeur == 1)
                 {
-                    $res = $this->Acteur->query("SELECT id FROM acteurs WHERE nom='{$d['Acteur']['nom']}' AND prenom='{$d['Acteur']['prenom']}';");
+                    $res = $this->Acteur->query("SELECT * FROM acteurs WHERE nom='{$d['Acteur']['nom']}' AND prenom='{$d['Acteur']['prenom']}';");
                     $val['film_id']=$idfilm;
                     $val['acteur_id'] = $res['0']['acteurs']['id'];
                     $this->loadModel('ActeursFilms');

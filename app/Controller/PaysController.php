@@ -39,7 +39,7 @@
 
             if($valeur == 1)
             {
-                $res = $this->Pays->query("SELECT id FROM pays WHERE pays='{$d['Pays']['pays']}';");
+                $res = $this->Pays->query("SELECT * FROM pays WHERE pays='{$d['Pays']['pays']}';");
                 $val['film_id']=$idfilm;
                 $val['pays_id'] = $res['0']['pays']['id'];
                 $this->loadModel('FilmsPays');

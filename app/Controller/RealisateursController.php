@@ -21,7 +21,7 @@
 
                 if(empty($resultat))
                 {
-                    if($this->Realisateur->save($d, true, array('nom','prenom')))
+                    if($this->Realisateur->save($d, true, array('nom','prenom', 'biographie')))
                     {
                         $valeur = 1;
                     }
@@ -37,7 +37,7 @@
 
                 if($valeur == 1)
                 {
-                    $res = $this->Realisateur->query("SELECT id FROM realisateurs WHERE nom='{$d['Realisateur']['nom']}' AND prenom='{$d['Realisateur']['prenom']}';");
+                    $res = $this->Realisateur->query("SELECT * FROM realisateurs WHERE nom='{$d['Realisateur']['nom']}' AND prenom='{$d['Realisateur']['prenom']}';");
                     debug($res);
                     $val['film_id']=$idfilm;
                     $val['realisateur_id'] = $res['0']['realisateurs']['id'];

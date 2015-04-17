@@ -1,5 +1,5 @@
 <div class="row">
-	<h2>Ajout de distributeur</h2>
+	<h2>Ajout du genre</h2>
 </div>
 <?php echo $this->Form->create('Genre'); ?>
 	<div class="row">
