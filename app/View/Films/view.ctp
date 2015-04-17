@@ -120,15 +120,14 @@ foreach ($film['Film'] as $f => $v) {
 		elseif ($f=='nbSaisons') echo "<h5>Nombre de saisons:</h5><p>$v</p>";
 		elseif ($f=='nbEpisodes') echo "<h5>Nombre d'épisodes:</h5><p>$v</p>";
 		elseif ($f=='budget') echo "<h5>Budget:</h5><p>$v €</p>";
-		elseif ($f== 'distributeur_id')
-		{
-			foreach ($dist as $d) {
-				if ($d['Distributeur']['id'] == $v) echo "<h5>Distributeur:</h5><p>".$d['Distributeur']['nom']."</p> ";
-			}
-		}
 	}
 }
-echo '<h5>Realisateur:</h5><ul class="inline-list">';
+echo '<h5>Distributeur:</h5><ul class="inline-list">';
+foreach ($dist as $d) {
+	//debug($r);
+	echo '<li>'.$d['Distributeur']['nom'].'</li>';
+}
+echo '</ul><h5>Realisateur:</h5><ul class="inline-list">';
 foreach ($real as $r) {
 	//debug($r);
 	echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
@@ -141,10 +140,10 @@ foreach ($real as $r) {
 }
 echo '</ul><h5>Pays:</h5><ul class="inline-list">';
 foreach ($pays as $p) {
-	echo "<li>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
+	echo "<li><p>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
 				array(
 					"alt"=>$p['Pays']['pays'],
-					"data-equalizer-watch"=>"foo"))."</li>";
+					"data-equalizer-watch"=>"foo"))." ".$p['Pays']['pays']."</p></li>";
 
 }
 echo "</ul>";

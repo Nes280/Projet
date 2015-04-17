@@ -41,10 +41,25 @@
         $optionsNote['conditions'] = array(
             'Note.film_id' => $id
             );
-        $optionsDist['join'] = array(
-            array(  'table'=>'films',
-                    'conditions' => array('films.distributeur_id = Distributeur.id')
+        $optionsDist['joins']=array(
+             array(
+                'table' => 'films'),
+            array(
+                'table' => 'films_distributeurs',
+                'alias' => 'FD',
+                'conditions' => array('FD.distributeur_id = Distributeur.id')
+                ),
+            array(
+                'table' => 'films',
+                'alias' => 'F',
+                'conditions' => array('FD.film_id = F.id')
                 )
+            );
+        $optionsDist['conditions'] = array(
+            'F.id' => $id
+            );
+        $optionsDist['fields'] = array(
+            'DISTINCT Distributeur.id', 'Distributeur.nom'
             );
          $optionsReal['joins'] = array(
            array(

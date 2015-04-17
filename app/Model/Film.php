@@ -44,19 +44,17 @@
 				array(
 					'className'=>'Pays',
 					'joinTable'=>'films_pays'
-					)
+					),
+			'Distributeur' => 
+				array(
+            		'className' => 'Distributeur',
+            		'joinTable'=>'films_distributeurs'
+        			)
 				);
 		public $hasMany = array(
         'Note' => array(
             'className' => 'Note'
         	)
     	);
-    	public $belongsTo = array(
-        'Distributeur' => array(
-            'className' => 'Distributeur',
-            'foreignKey' => 'distributeur_id'
-        )
-    );
-
 	}
 ?>
