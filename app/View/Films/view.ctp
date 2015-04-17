@@ -99,14 +99,17 @@
 <?php
 echo'<h5>Acteurs:</h5><ul class="inline-list">';
 foreach ($acteursFilm as $a ):
-         		echo '<li>'.$this->Html->link(
-         				$a['Acteur']['prenom'].' '.$a['Acteur']['nom'],
-         				array(
-                        'controller' => 'acteurs', 
-                        'action' => 'view', 
-                        $a['Acteur']['id']
-                        )
-                    ).'</li>';
+	if ($a['Acteur']['biographie']) {
+		echo '<li>'.$this->Html->link(
+         	$a['Acteur']['prenom'].' '.$a['Acteur']['nom'],
+         	array(
+                'controller' => 'acteurs', 
+                'action' => 'view', 
+                $a['Acteur']['id']
+            )
+       	).'</li>';
+	}
+	else echo "<li>".$a['Acteur']['prenom']." ".$a['Acteur']['nom']."</li>";
     // debug($a);
 endforeach;
 echo "</ul>";
@@ -130,20 +133,24 @@ foreach ($dist as $d) {
 echo '</ul><h5>Realisateur:</h5><ul class="inline-list">';
 foreach ($real as $r) {
 	//debug($r);
-	echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
-		array(
-                        'controller' => 'Realisateurs', 
-                        'action' => 'view', 
-                        $r['Realisateur']['id']
-                        )
-                    ).'</li>';
+	if ($r['Realisateur']['biographie']!= NULL) {
+	
+		echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
+			array(
+	                        'controller' => 'Realisateurs', 
+	                        'action' => 'view', 
+	                        $r['Realisateur']['id']
+	                        )
+	                    ).'</li>';
+	}
+	else echo "<li>".$r['Realisateur']['prenom']." ".$r['Realisateur']['nom']."</li>";
 }
 echo '</ul><h5>Pays:</h5><ul class="inline-list">';
 foreach ($pays as $p) {
-	echo "<li><p>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
-				array(
-					"alt"=>$p['Pays']['pays'],
-					"data-equalizer-watch"=>"foo"))." ".$p['Pays']['pays']."</p></li>";
+		echo "<li><p>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
+					array(
+						"alt"=>$p['Pays']['pays'],
+						"data-equalizer-watch"=>"foo"))." ".$p['Pays']['pays']."</p></li>";
 
 }
 echo "</ul>";

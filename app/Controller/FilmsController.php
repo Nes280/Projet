@@ -35,7 +35,7 @@
             'F.id' => $id
             );
         $options['fields'] = array(
-            'DISTINCT Acteur.id', 'Acteur.nom, Acteur.prenom'
+            'DISTINCT Acteur.id', 'Acteur.nom, Acteur.prenom, Acteur.biographie'
             );
 
         $optionsNote['conditions'] = array(
@@ -79,7 +79,7 @@
             'F.id' => $id
             );
          $optionsReal['fields'] = array(
-            'DISTINCT Realisateur.id', 'Realisateur.nom, Realisateur.prenom'
+            'DISTINCT Realisateur.id', 'Realisateur.nom, Realisateur.prenom, Realisateur.biographie'
             );
          $optionsPays['joins'] = array(
            array(
