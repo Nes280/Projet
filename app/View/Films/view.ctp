@@ -128,6 +128,18 @@ foreach ($film['Film'] as $f => $v) {
 		}
 	}
 }
+echo "<h5>Realisateur:</h5><ul>";
+foreach ($real as $r) {
+	//debug($r);
+	echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
+		array(
+                        'controller' => 'Realisateurs', 
+                        'action' => 'view', 
+                        $r['Realisateur']['id']
+                        )
+                    ).'</li>';
+}
+echo "</ul>";
 ?>
 <!--p><?php echo $film['Film']['synopsis']; ?></p>
 <h5>Durée :</h5>

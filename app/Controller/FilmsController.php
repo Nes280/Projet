@@ -46,14 +46,36 @@
                     'conditions' => array('films.distributeur_id = Distributeur.id')
                 )
             );
+         $optionsReal['joins'] = array(
+           array(
+                'table' => 'films'),
+            array(
+                'table' => 'films_realisateurs',
+                'alias' => 'FR',
+                'conditions' => array('FR.realisateur_id = Realisateur.id')
+                ),
+            array(
+                'table' => 'films',
+                'alias' => 'F',
+                'conditions' => array('FR.film_id = F.id')
+                )
+            );
+         $optionsReal['conditions'] = array(
+            'F.id' => $id
+            );
+         $optionsReal['fields'] = array(
+            'DISTINCT Realisateur.id', 'Realisateur.nom, Realisateur.prenom'
+            );
 
         $lesActeurs = $this->Film->Acteur->find('all',$options);
         $note = $this->Film->Note->find('all',$optionsNote);
         $dist = $this->Film->Distributeur->find('all',$optionsDist);
+        $real = $this->Film->Realisateur->find('all',$optionsReal);
 
         $this->set('acteursFilm',$lesActeurs);
         $this->set('note',$note);
-        $this->set('dist',$dist);
+        $this->set('dist',$dist); //distributeur
+        $this->set('real',$real); //realisateur
     }
 
     public function classement(){

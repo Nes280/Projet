@@ -56,5 +56,41 @@
                 }
             }
         }
+
+        public function view($id = null) {
+            if (!$id) {
+                throw new NotFoundException(__('Realisateur non trouvé'));
+            }
+
+            $realisateur = $this->Realisateur->findById($id);
+            if (!$realisateur) {
+                throw new NotFoundException(__('Realisateur non trouvé'));
+            }
+            $this->set('realisateur', $realisateur);
+
+            $options['joins']=array(
+             array(
+                'table' => 'realisateurs'),
+            array(
+                'table' => 'films_realisateurs',
+                'alias' => 'FR',
+                'conditions' => array('FR.realisateur_id = realisateurs.id')
+                ),
+            array(
+                'table' => 'films',
+                'conditions' => array('FR.film_id = Film.id')
+                )
+            );
+        $options['conditions'] = array(
+            'realisateurs.id' => $id
+            );
+        $options['fields'] = array(
+            'DISTINCT Film.id', 'Film.nom'
+            );
+
+        $lesFilms = $this->Realisateur->Film->find('all',$options);
+
+        $this->set('filmsReal',$lesFilms);
+        }
    	}
 ?>
