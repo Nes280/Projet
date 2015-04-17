@@ -32,8 +32,13 @@
 			                          FROM acteurs
 			                          WHERE nom LIKE \'%' . safe( $_GET['q'] ) . '%\'
 			                          OR prenom LIKE \'%' . safe( $_GET['q'] ) . '%\'');
+			$resulta3 = mysql_query( 'SELECT nom,prenom, id
+			                          FROM realisateurs
+			                          WHERE nom LIKE \'%' . safe( $_GET['q'] ) . '%\'
+			                          OR prenom LIKE \'%' . safe( $_GET['q'] ) . '%\'');
 			$this->set('result', $resulta);
 			$this->set('result2', $resulta2);
+			$this->set('result3', $resulta3);
 		}
     }
 }
