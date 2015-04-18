@@ -21,7 +21,6 @@
         {
         	$d = $this->request->data;
             $d['Distributeur']['id'] = null;
-            debug($d);
             $valeur = 0;
             $resultat = $this->Distributeur->query("SELECT id FROM distributeurs WHERE nom='{$d['Distributeur']['nom']}';");
 
@@ -43,20 +42,20 @@
 
             if($valeur == 1)
             {
-            	$res = $this->Distributeur->query("SELECT id FROM distributeurs WHERE nom='{$d['Distributeur']['nom']}';");
-                if($this->Distributeur->Film->updateAll(
-                        array(
-                            'distributeur_id' => $res['0']['distributeur']['id']
-                        ),
-                        array('id' => $idfilm)
-                ))
+            	$res = $this->Distributeur->query("SELECT * FROM distributeurs WHERE nom='{$d['Distributeur']['nom']}';");
+                $val['film_id']=$idfilm;
+                $val['distributeur_id'] = $res['0']['distributeurs']['id'];
+                $this->loadModel('FilmsDistributeurs');
+                $this->FilmsDistributeurs->create();
+                if($this->FilmsDistributeurs->save($val, true, array('film_id', 'distributeur_id')))
                 {
-                    $this->redirect(array('controller' => 'Acteurs', 'action' => 'ajoutacteur', $id));
-   
+                    
+                    $this->redirect(array('controller' => 'Distributeurs', 'action' => 'ajoutdistributeur', $id));
                 }
                 else
                 {
-                    
+                    $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
+
                 }
             }
         }

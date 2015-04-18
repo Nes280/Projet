@@ -20,4 +20,3 @@
 	<?php echo $this->Html->link('Ajout du genre', array('controller' => 'Genres','action'=>'ajoutgenre', $film['Films']['id']), array('class' => 'button success')); ?>
 
 	<?php echo $this->Html->link('Ajout du réalisateur', array('controller' => 'Realisateurs','action'=>'ajoutrealisateur', $film['Films']['id']), array('class' => 'button success')); ?>
-	<?php echo $this->Html->link('Ajout du producteur', array('controller' => 'Producteurs','action'=>'ajoutproducteur', $film['Films']['id']), array('class' => 'button success')); ?>
