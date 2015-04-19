@@ -3,7 +3,8 @@
 echo ' <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5">';
 $i = 1;
 //echo"<h2>";
-foreach ($films as $film): 
+for($i=1;$i<6;$i++)
+{
             switch ($i) {
                 case '1':
                     echo "<li> 1er </li>";
@@ -25,21 +26,22 @@ foreach ($films as $film):
                     echo"<li> Non classé </li>";                    
                     break;
             }
-            $i++; 
+            
         
-endforeach; 
+}
 //echo "</h2>";
 foreach ($films as $film): 
+    //debug($film);
             echo    "<li>".$this->Html->link($this->Html->image(
-                        "Films/".$film['Film']['nom'].".jpg", 
+                        "Films/".$film['F']['nom'].".jpg", 
                             array(
-                                "alt" => $film['Film']['nom'],
+                                "alt" => $film['F']['nom'],
                                 "height" => "200",
                                 "width" => "150")),
                     array(
                         'controller' => 'films', 
                         'action' => 'view', 
-                        $film['Film']['id']),
+                        $film['F']['id']),
                         array('escape' => false))."</li>"; 
         
 endforeach; 

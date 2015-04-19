@@ -141,11 +141,27 @@
     }
 
     public function classement(){
-        $this->set('films', $this->Film->find('all',
+         $options['joins']=array(
+             array(
+                'table' => 'notes'),
             array(
+                'table' => 'films',
+                'alias' => 'F',
+                'conditions' => array('notes.film_id = F.id')
+                )
+            );
+        /*$options['conditions'] = array(
+            'F.id' => $id
+
+            );*/
+        $options['fields'] = array(
+            'DISTINCT notes.id','F.nom, F.id, notes.note, notes.film_id'
+            );
+        $this->set('films', $this->Film->Note->find('all',$options));
+           /* array(
                 'order'=> 'note DESC',
                 'limit'=> '5'
-                )));
+                )));*/
     }
 
     public function ajoutfilm(){
