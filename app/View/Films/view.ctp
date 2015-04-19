@@ -56,38 +56,54 @@
 				echo "-<h5>pas de note</h5>";
 			}
 			elseif($res<2){
-				for ($i=1; $i <2 ; $i++) { 
-					echo $this->Html->image("etoile.png",
-						array(
-						"alt"=>"etoile",
-						));
+				for ($i=1; $i <6 ; $i++) { 
+					if ($i<2) echo $this->Html->image("etoile.png",
+							array(
+							"alt"=>"etoile",
+							));
+				else echo $this->Html->image("etoileG.png",
+							array(
+							"alt"=>"etoile",
+							));
 				}
 				echo " <h5>mauvais</h5>";
 			}
 			elseif ($res<3){
-				for ($i=1; $i <3 ; $i++) { 
-					echo $this->Html->image("etoile.png",
+				for ($i=1; $i <6 ; $i++) { 
+					if ($i<3) echo $this->Html->image("etoile.png",
 						array(
 						"alt"=>"etoile",
 						));
+					else echo $this->Html->image("etoileG.png",
+							array(
+							"alt"=>"etoile",
+							));
 				}
 				echo " <h5>moyen</h5>";
 			}
 			elseif ($res<4){
-				for ($i=1; $i <4 ; $i++) { 
-					echo $this->Html->image("etoile.png",
+				for ($i=1; $i <6 ; $i++) { 
+					if ($i<4) echo $this->Html->image("etoile.png",
 						array(
 						"alt"=>"etoile",
 						));
+					else echo $this->Html->image("etoileG.png",
+							array(
+							"alt"=>"etoile",
+							));
 				}
 				echo " <h5>bon</h5>";
 			}
 			elseif ($res<5){
-				for ($i=1; $i <5 ; $i++) { 
-					echo $this->Html->image("etoile.png",
+				for ($i=1; $i <6 ; $i++) { 
+					if ($i<5) echo $this->Html->image("etoile.png",
 						array(
 						"alt"=>"etoile",
 						));
+					else echo $this->Html->image("etoileG.png",
+							array(
+							"alt"=>"etoile",
+							));
 				}
 				echo " <h5>très bon</h5>";
 			}
