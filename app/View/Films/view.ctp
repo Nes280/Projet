@@ -1,4 +1,4 @@
-<h1><?php echo $film['Film']['nom']; ?></h1>
+<h1><?php echo $film['Film']['nom'];?></h1>
 
 <div class="row" >
 	<div class="medium-4 columns">
@@ -52,45 +52,54 @@
 				$res = $somme / $tour;
 			}
 			else $res = 0;
-			switch ($res) {
-				case '1':
-					echo "mauvais";
-					break;
-				case '2':
-					echo "moyen";
-					break;
-				case '3':
-					echo "bon";
-					break;
-				case '4':
-					echo "très bon";
-					break;
-				case '5':
-					echo "excelent";
-					break;
-				default:
-					echo "pas de note";
-					break;
+			if($res==0){
+				echo "pas de note";
 			}
+			elseif($res<2){
+				echo "mauvais";
+			}
+			elseif ($res<3){
+				echo "moyen";
+			}
+			elseif ($res<4){
+				echo "bon";
+			}
+			elseif ($res<5){
+				echo "très bon";
+			}
+			elseif ($res==5){
+				echo "excelent";
+			}
+			
+	      	if(AuthComponent::user('Membre')){
 	      	?></h3>
 	      	<a href="#" data-reveal-id="myModal">voter</a>
 			<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 			 <?php echo "<h2 id='modalTitle'>Voter pour ".$film['Film']['nom']." </h2>"?>
-			  <form>
-			  	<p>
-			  		<label for="note">Choisissez une note</label>
-			  		<select name="note" id="note">
-			  			<option value="1">mauvais</option>
-			  			<option value="2">moyen</option>
-			  			<option value="3">bon</option>
-			  			<option value="4">très bon</option>
-			  			<option value="5">excelent</option>
-			  		</select>
-			  	</p>
-			  	<input type="submit" value="Noter" />
-			  </form>	
+			 <?php echo $this->Form->create('Note'); ?>
+				<div class="row">
+				    <div class="large-4 columns">
+						<?php 
+							echo $this->Form->select('note',[
+								'1'=>'mauvais',
+								'2'=>'moyen',
+								'3'=>'bon',
+								'4'=>'très bon',
+								'5'=>'excelent'
+								],[
+								'default'=>'3',
+								'empty'=>false
+								]);
+							 ?>
+					</div>
+				</div>
+				<div class="row">
+					<?php echo $this->Form->end('Noter'); ?>
+				</div>
 			  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-			</div>	
+			</div>
+			</h3>
+			<?php } ?>	
 	    </div>
 	</div>
 </div>

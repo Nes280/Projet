@@ -113,6 +113,31 @@
         $this->set('dist',$dist); //distributeur
         $this->set('real',$real); //realisateur
         $this->set('pays',$pays);
+
+        if($this->request->is('post'))
+            {
+                $d = $this->request->data;
+                $d['Note']['film_id']=$id;
+                //$d['Note']['membre_id']=AuthComponent::user('Membre');
+                //debug($d);
+                $nom = AuthComponent::user('Membre');
+                $nom = $nom['username'];
+                //debug($nom);
+                $succes = "<div data-alert class='alert-box success radius'>
+                                Merci pour votre vote $nom !
+                                <a href='#'' class='close'>&times;</a>
+                            </div>";
+                if($this->Film->Note->save($d, true, array('note','film_id')))
+                {
+                    $this->Session->setFlash($succes, "notif");
+                    $this->redirect("/films/view/$id");
+
+                }
+                else
+                {
+                    $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
+                }
+            }
     }
 
     public function classement(){
