@@ -53,22 +53,52 @@
 			}
 			else $res = 0;
 			if($res==0){
-				echo "pas de note";
+				echo "-<h5>pas de note</h5>";
 			}
 			elseif($res<2){
-				echo "mauvais";
+				for ($i=1; $i <2 ; $i++) { 
+					echo $this->Html->image("etoile.png",
+						array(
+						"alt"=>"etoile",
+						));
+				}
+				echo " <h5>mauvais</h5>";
 			}
 			elseif ($res<3){
-				echo "moyen";
+				for ($i=1; $i <3 ; $i++) { 
+					echo $this->Html->image("etoile.png",
+						array(
+						"alt"=>"etoile",
+						));
+				}
+				echo " <h5>moyen</h5>";
 			}
 			elseif ($res<4){
-				echo "bon";
+				for ($i=1; $i <4 ; $i++) { 
+					echo $this->Html->image("etoile.png",
+						array(
+						"alt"=>"etoile",
+						));
+				}
+				echo " <h5>bon</h5>";
 			}
 			elseif ($res<5){
-				echo "très bon";
+				for ($i=1; $i <5 ; $i++) { 
+					echo $this->Html->image("etoile.png",
+						array(
+						"alt"=>"etoile",
+						));
+				}
+				echo " <h5>très bon</h5>";
 			}
 			elseif ($res==5){
-				echo "excelent";
+				for ($i=1; $i <6 ; $i++) { 
+					echo $this->Html->image("etoile.png",
+						array(
+						"alt"=>"etoile",
+						));
+				}
+				echo " <h5>excelent</h5>";
 			}
 			
 	      	if(AuthComponent::user('Membre')){
