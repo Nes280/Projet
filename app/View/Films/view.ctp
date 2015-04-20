@@ -151,23 +151,23 @@
 					echo "</br>";
 					switch ($laNote) {
 						case '1':
-							echo "Vous consirérez ce film comme mauvais.";
+							echo "Vous considérez ce film comme mauvais.";
 							break;
 						case '2':
-							echo "Vous consirérez ce film comme moyen.";
+							echo "Vous considérez ce film comme moyen.";
 							break;
 						case '3':
-							echo "Vous consirérez ce film comme bon.";
+							echo "Vous considérez ce film comme bon.";
 							break;
 						case '4':
-							echo "Vous consirérez ce film comme très bon.";
+							echo "Vous considérez ce film comme très bon.";
 							break;
 						case '5':
-							echo "Vous consirérez ce film comme excelent.";
+							echo "Vous considérez ce film comme excelent.";
 							break;
 						
 						default:
-							echo"Il y à un problème avec votre note";
+							echo"Il y a un problème avec votre note";
 							break;
 					}
 				}

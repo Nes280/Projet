@@ -139,13 +139,15 @@
 
         //debug($nomId[0]['M']['id']);
         $dejaVote=false;
-        foreach ($note as  $n) {
-            if($n['Note']['membre_id']==$nomId[0]['M']['id'])
-            {
-                $dejaVote = true;
-                $laNote = $n['Note']['note'];
+        if (AuthComponent::user('Membre')) {   
+            foreach ($note as  $n) {
+                if($n['Note']['membre_id']==$nomId[0]['M']['id'])
+                {
+                    $dejaVote = true;
+                    $laNote = $n['Note']['note'];
+                }
+                //echo $dejaVote;
             }
-            //echo $dejaVote;
         }
         if ($dejaVote) {
             $this->set('dejaVote', $dejaVote);
