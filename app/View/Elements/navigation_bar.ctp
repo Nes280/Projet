@@ -13,9 +13,11 @@
             <?php
               if(AuthComponent::user('Membre'))
               {
+                $nom = AuthComponent::user('Membre');
+                $nom = $nom['username'];
             ?>
                 <li class="has-dropdown">
-                  <a href="#">Mon Compte</a>
+                  <a href="#"><?php echo $nom?></a>
                   <ul class="dropdown">
                     <?php echo "<li>".$this->Html->link('Modifier le profil', array('controller' => 'Membres','action'=>'modifier'))."</li>";
                           echo "<li>".$this->Html->link('Noter des films', array('controller' => 'Membres','action'=>''))."</li>";
@@ -63,7 +65,7 @@
       </li>
       <li>
           <?php
-            echo $this->Html->link('Consulter le classement', array(
+            echo $this->Html->link('Classement', array(
               'controller' => 'films',
               'action'=>'classement'));
           ?>
