@@ -1,4 +1,4 @@
-<h1>Recherche avancée</h1>
+<h1>Recherche</h1>
 
 <!--debut du formulaire-->
 <form class="has-form" action="" method="get">

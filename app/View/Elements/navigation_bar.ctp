@@ -69,7 +69,7 @@
           ?>
         </li>
         <li>
-         <?php echo$this->Html->link('Recherche avancée', array('controller' => 'recherches','action'=>'index')); ?>
+         <?php echo$this->Html->link('Recherche', array('controller' => 'recherches','action'=>'index')); ?>
         <!-- class="has-form">
           <div class="row collapse">
             <div class="large-8 columns">
