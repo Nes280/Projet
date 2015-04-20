@@ -162,12 +162,14 @@
                 $d = $this->request->data;
                 $d['Note']['film_id']=$id;
                 $d['Note']['membre_id']=$nomId[0]['M']['id'];
+                $d['Note']['date'] = date('Y-m-j');
+
                 //debug($d);
                 $succes = "<div data-alert class='alert-box success radius'>
                                 Merci pour votre vote $nom !
                                 <a href='#'' class='close'>&times;</a>
                             </div>";
-                if($this->Film->Note->save($d, true, array('note','film_id', 'membre_id')))
+                if($this->Film->Note->save($d, true, array('note','film_id', 'membre_id', 'date')))
                 {
                     $this->Session->setFlash($succes, "notif");
                     $this->redirect("/films/view/$id");
@@ -206,7 +208,44 @@
         $options['fields'] = array(
             'DISTINCT notes.id','F.nom, F.id, notes.note, notes.film_id'
             );
-        $this->set('films', $this->Film->Note->find('all',$options));
+        $top = $this->Film->Note->find('all',$options);
+        $tableau=array();
+        $tri = array();
+        foreach ($top as $t) { //construction du tableau avec les films
+            if(empty($tableau[$t['F']['nom']])){
+                $tableau+=array($t['F']['nom']=>array(
+                    'note'=>array(),
+                    'volume'=>0,
+                    'film_id'=>array(),
+                    'nom'=>array()));
+                $tri+=array($t['F']['nom']=>array(
+                    'note'=>array(),
+                    'volume'=>0,
+                    'film_id'=>array(),
+                    'nom'=>array()));
+            }
+           
+        }
+        foreach ($top as $t) { //remplissage
+            //debug($t);
+            if(empty($tableau[$t['F']['nom']]['note']))
+            {
+                $tableau[$t['F']['nom']]['note']=$t['notes']['note'];
+                $tableau[$t['F']['nom']]['film_id']=$t['notes']['film_id'];
+                $tableau[$t['F']['nom']]['nom']=$t['F']['nom'];
+                $tableau[$t['F']['nom']]['volume']++;   
+            }
+            else 
+            {
+                $tableau[$t['F']['nom']]['note']=''.$tableau[$t['F']['nom']]['note']+$t['notes']['note'].'';
+                $tableau[$t['F']['nom']]['volume']++;
+            }
+        
+        }
+        
+        array_multisort($tableau,SORT_DESC);
+         //debug($tableau);
+        $this->set('films',$tableau);
            /* array(
                 'order'=> 'note DESC',
                 'limit'=> '5'

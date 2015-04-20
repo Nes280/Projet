@@ -30,19 +30,23 @@ for($i=1;$i<6;$i++)
         
 }
 //echo "</h2>";
+$i=0;
 foreach ($films as $film): 
     //debug($film);
+    if ($i<5) {
+      $i++;
             echo    "<li>".$this->Html->link($this->Html->image(
-                        "Films/".$film['F']['nom'].".jpg", 
+                        "Films/".$film['nom'].".jpg", 
                             array(
-                                "alt" => $film['F']['nom'],
+                                "alt" => $film['nom'],
                                 "height" => "200",
                                 "width" => "150")),
                     array(
                         'controller' => 'films', 
                         'action' => 'view', 
-                        $film['F']['id']),
+                        $film['film_id']),
                         array('escape' => false))."</li>"; 
+    }
         
 endforeach; 
 echo "</ul>";
