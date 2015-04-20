@@ -114,20 +114,37 @@
         $this->set('real',$real); //realisateur
         $this->set('pays',$pays);
 
+        $nom = AuthComponent::user('Membre');
+       // debug($nom);
+                $nom = $nom['username'];
+                $optionsNoteId['joins'] = array(
+                    array(
+                        'table' => 'notes',
+                        'alias' => 'Notes'),
+                    array(
+                        'table' => 'membres',
+                        'alias' => 'M',
+                        'conditions' => array('M.username' => $nom)
+                        ),
+                );
+                $optionsNoteId['fields'] = array(
+                    'DISTINCT M.id'
+                    );
+                $nomId = $this->Film->Note->find('all',$optionsNoteId);
+                //debug($nomId[0]['M']['id']);
+                //$this->set('membreId',$nomId);
+
         if($this->request->is('post'))
             {
                 $d = $this->request->data;
                 $d['Note']['film_id']=$id;
-                //$d['Note']['membre_id']=AuthComponent::user('Membre');
+                $d['Note']['membre_id']=$nomId[0]['M']['id'];
                 //debug($d);
-                $nom = AuthComponent::user('Membre');
-                $nom = $nom['username'];
-                //debug($nom);
                 $succes = "<div data-alert class='alert-box success radius'>
                                 Merci pour votre vote $nom !
                                 <a href='#'' class='close'>&times;</a>
                             </div>";
-                if($this->Film->Note->save($d, true, array('note','film_id')))
+                if($this->Film->Note->save($d, true, array('note','film_id', 'membre_id')))
                 {
                     $this->Session->setFlash($succes, "notif");
                     $this->redirect("/films/view/$id");
