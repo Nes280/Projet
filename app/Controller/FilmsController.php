@@ -16,7 +16,11 @@
             throw new NotFoundException(__('Invalid films'));
         }
         $this->set('film', $film);
+        $nom = AuthComponent::user('Membre');
+        $nom = $nom['username'];
+/***************OPTION********************/
 
+//ACTEUR
         $options['joins']=array(
              array(
                 'table' => 'films'),
@@ -37,7 +41,7 @@
         $options['fields'] = array(
             'DISTINCT Acteur.id', 'Acteur.nom, Acteur.prenom, Acteur.biographie'
             );
-
+//NOTE
         $optionsNote['conditions'] = array(
             'Note.film_id' => $id
             );
@@ -55,12 +59,14 @@
                 'conditions' => array('FD.film_id = F.id')
                 )
             );
+//DISTRIBUTEUR
         $optionsDist['conditions'] = array(
             'F.id' => $id
             );
         $optionsDist['fields'] = array(
             'DISTINCT Distributeur.id', 'Distributeur.nom'
             );
+//REALISATEUR
          $optionsReal['joins'] = array(
            array(
                 'table' => 'films'),
@@ -81,6 +87,7 @@
          $optionsReal['fields'] = array(
             'DISTINCT Realisateur.id', 'Realisateur.nom, Realisateur.prenom, Realisateur.biographie'
             );
+//PAYS
          $optionsPays['joins'] = array(
            array(
                 'table' => 'films'),
@@ -101,41 +108,55 @@
          $optionsPays['fields'] = array(
             'DISTINCT Pays.id', 'Pays.pays'
             );
-
+//MEMBRE ID NOTE
+         $optionsNoteId['joins'] = array(
+            array(
+                'table' => 'notes',
+                'alias' => 'Notes'),
+            array(
+                'table' => 'membres',
+                'alias' => 'M',
+                'conditions' => array('M.username' => $nom)
+            ),
+        );
+        $optionsNoteId['fields'] = array(
+            'DISTINCT M.id'
+        );
+/**********FIN OPTION**********/
         $lesActeurs = $this->Film->Acteur->find('all',$options);
         $note = $this->Film->Note->find('all',$optionsNote);
         $dist = $this->Film->Distributeur->find('all',$optionsDist);
         $real = $this->Film->Realisateur->find('all',$optionsReal);
         $pays = $this->Film->Pays->find('all',$optionsPays);
+        $nomId = $this->Film->Note->find('all',$optionsNoteId);
 
         $this->set('acteursFilm',$lesActeurs);
         $this->set('note',$note);
         $this->set('dist',$dist); //distributeur
         $this->set('real',$real); //realisateur
         $this->set('pays',$pays);
+        $this->set('membreId',$nomId);
 
-        $nom = AuthComponent::user('Membre');
-       // debug($nom);
-                $nom = $nom['username'];
-                $optionsNoteId['joins'] = array(
-                    array(
-                        'table' => 'notes',
-                        'alias' => 'Notes'),
-                    array(
-                        'table' => 'membres',
-                        'alias' => 'M',
-                        'conditions' => array('M.username' => $nom)
-                        ),
-                );
-                $optionsNoteId['fields'] = array(
-                    'DISTINCT M.id'
-                    );
-                $nomId = $this->Film->Note->find('all',$optionsNoteId);
-                //debug($nomId[0]['M']['id']);
-                //$this->set('membreId',$nomId);
-
-        if($this->request->is('post'))
+        //debug($nomId[0]['M']['id']);
+        $dejaVote=false;
+        foreach ($note as  $n) {
+            if($n['Note']['membre_id']==$nomId[0]['M']['id'])
             {
+                $dejaVote = true;
+                $laNote = $n['Note']['note'];
+            }
+            //echo $dejaVote;
+        }
+        if ($dejaVote) {
+            $this->set('dejaVote', $dejaVote);
+            $this->set('laNote', $laNote);
+        }
+        else $this->set('dejaVote', $dejaVote);
+        
+        if($this->request->is('post'))
+        {
+            if ($dejaVote===false) {
+               
                 $d = $this->request->data;
                 $d['Note']['film_id']=$id;
                 $d['Note']['membre_id']=$nomId[0]['M']['id'];
@@ -155,6 +176,15 @@
                     $this->Session->setFlash("Merci de corriger vos erreurs", "notif");
                 }
             }
+            else
+            {
+                $attention = "<div data-alert class='alert-box warning radius'>
+                                $nom, vous avez déjà voté!
+                                <a href='#'' class='close'>&times;</a>
+                            </div>";
+                $this->Session->setFlash("$attention", "notif");
+            }
+        }
     }
 
     public function classement(){

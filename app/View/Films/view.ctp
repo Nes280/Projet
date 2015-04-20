@@ -118,6 +118,7 @@
 			}
 			
 	      	if(AuthComponent::user('Membre')){
+	      		if(!$dejaVote){
 	      	?></h3>
 	      	<a href="#" data-reveal-id="myModal">voter</a>
 			<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
@@ -145,7 +146,33 @@
 			  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 			</div>
 			</h3>
-			<?php } ?>	
+			<?php }
+				else{
+					echo "</br>";
+					switch ($laNote) {
+						case '1':
+							echo "Vous consirérez ce film comme mauvais.";
+							break;
+						case '2':
+							echo "Vous consirérez ce film comme moyen.";
+							break;
+						case '3':
+							echo "Vous consirérez ce film comme bon.";
+							break;
+						case '4':
+							echo "Vous consirérez ce film comme très bon.";
+							break;
+						case '5':
+							echo "Vous consirérez ce film comme excelent.";
+							break;
+						
+						default:
+							echo"Il y à un problème avec votre note";
+							break;
+					}
+				}
+			}
+			 ?>	
 	    </div>
 	</div>
 </div>
