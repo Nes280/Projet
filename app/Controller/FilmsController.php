@@ -3,7 +3,63 @@
     public $helpers = array('Html', 'Form');
 
     public function index() {
-        $this->set('films', $this->Film->find('all'));
+        $this->set('lesFilms', $this->Film->find('all'));
+        
+        $options['joins']=array(
+             array(
+                'table' => 'notes'),
+            array(
+                'table' => 'films',
+                'alias' => 'F',
+                'conditions' => array('notes.film_id = F.id')
+                )
+            );
+        /*$options['conditions'] = array(
+            'F.id' => $id
+
+            );*/
+        $options['fields'] = array(
+            'DISTINCT notes.id','F.nom, F.id, notes.note, notes.film_id'
+            );
+        $top = $this->Film->Note->find('all',$options);
+        $tableau=array();
+        $tri = array();
+        foreach ($top as $t) { //construction du tableau avec les films
+            if(empty($tableau[$t['F']['nom']])){
+                $tableau+=array($t['F']['nom']=>array(
+                    'note'=>array(),
+                    'volume'=>0,
+                    'film_id'=>array(),
+                    'nom'=>array()));
+                $tri+=array($t['F']['nom']=>array(
+                    'note'=>array(),
+                    'volume'=>0,
+                    'film_id'=>array(),
+                    'nom'=>array()));
+            }
+           
+        }
+        foreach ($top as $t) { //remplissage
+            //debug($t);
+            if(empty($tableau[$t['F']['nom']]['note']))
+            {
+                $tableau[$t['F']['nom']]['note']=$t['notes']['note'];
+                $tableau[$t['F']['nom']]['film_id']=$t['notes']['film_id'];
+                $tableau[$t['F']['nom']]['nom']=$t['F']['nom'];
+                $tableau[$t['F']['nom']]['volume']++;   
+            }
+            else 
+            {
+                $tableau[$t['F']['nom']]['note']=''.$tableau[$t['F']['nom']]['note']+$t['notes']['note'].'';
+                $tableau[$t['F']['nom']]['volume']++;
+            }
+        
+        }
+        
+        array_multisort($tableau,SORT_DESC);
+         //debug($tableau);
+        $this->set('films',$tableau);
+        
     }
 
     public function view($id = null) {
