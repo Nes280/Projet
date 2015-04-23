@@ -2,7 +2,7 @@
     <h3> A la une: </h3>
 <?php 
     //echo '<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">';
-    echo'<div class="row">';
+    echo'<div class="row"><div class="panel">';
     $i=false;
     foreach ($films as $film): 
         //debug($film);
@@ -106,14 +106,14 @@
             }
               
     endforeach;
-    echo "</div>";
-    if (!AuthComponent::user('Membre')) {
+    echo "</div></div>";
+    //if (!AuthComponent::user('Membre')) {
         echo '<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5">';
         foreach ($lesFilms as $f) {
             echo '<li>'.$tableau[$i]=$this->Html->link($this->Html->image(
                             "Films/".$f['Film']['nom'].".jpg", 
                             array(
-                                "alt" => "slide $i",
+                                "alt" => $f['Film']['nom'],
                                 "height"=>"70%",
                                 "width"=>"70%"
                            )),
@@ -123,7 +123,7 @@
                                 $f['Film']['id']),
                                 array('escape' => false)).'</li>';
         }
-    }
+    //}
     unset($film); ?>
     
     </body>

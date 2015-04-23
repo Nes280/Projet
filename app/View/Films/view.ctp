@@ -19,9 +19,17 @@
 				echo "<a href='#' data-reveal-id='video' class='radius button' data-equalizer-watch='foo'>Voir la vidéo</a>	
 						<div id='video' class='reveal-modal large' data-reveal aria-labelledby='videoTitre' aria-hidden='true' role='dialog'>
 		  					<h2 id='videoTitre'>".$film['Film']['nom']."</h2>
-		  					<div class='flex-video widescreen '>
-		    					<iframe width='1280' height='720' src='".$film['Film']['video']."' framebordeer='0' ></iframe>
-		  					</div>
+		  					<div class='flex-video widescreen '>"
+		    					//<iframe width='1280' height='720' src='".$film['Film']['video']."' framebordeer='0' ></iframe>
+		    					.$this->Html->media(
+								    array(
+								        $film['Film']['nom'].'.mp4',  
+								    ),
+								    array(
+								    	'controls',
+								    	'name'=>'media',
+								    	)).
+		  					"</div>
 		  				</div>";
 			}
 	      ?>

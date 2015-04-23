@@ -58,8 +58,7 @@
         
         array_multisort($tableau,SORT_DESC);
          //debug($tableau);
-        $this->set('films',$tableau);
-        
+        $this->set('films',$tableau);      
     }
 
     public function view($id = null) {
