@@ -17,7 +17,7 @@
 			'synopsis' => array(
 				array(
 					//'rule' => array('custom', '/^[a-z0-9 ]*$/i'),
-					'rule' => array('between', '5','500'),
+					'rule' => array('between', '5','3000'),
 					'required' => true,
 					'allowEmpty'=> false,
 					'message'=>"Votre description n'est pas valide"

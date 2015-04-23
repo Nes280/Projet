@@ -4,7 +4,15 @@
 <?php echo $this->Form->create('Format'); ?>
 	<div class="row">
 	    <div class="large-4 columns">
-			<?php echo $this->Form->input('format',array('label' =>"Format", "type"=>"text", "maxlength"=>"30")); ?>
+			<?php //echo $this->Form->input('format',array('label' =>"Format", "type"=>"text", "maxlength"=>"30")); 
+			 
+				$options=array();
+				foreach ($format as $f) {
+					$options[$f['Format']['format']]=$f['Format']['format'];
+				}
+
+				echo $this->Form->select('format', $options, ['escape' => false,'empty'=>false]);
+			?>
 		</div>
 	</div>
 	<div class="row">

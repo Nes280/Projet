@@ -57,6 +57,8 @@
         $film = $this->Format->Film->findById($idfilm);
         $this->set('film', $film);
         $d = $this->request->data;
+        $format=$this->Format->find('all');
+        $this->set('format',$format);
 
         if($this->request->is('post'))
         {

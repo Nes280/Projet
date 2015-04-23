@@ -59,6 +59,8 @@
         $film = $this->Genre->Film->findById($idfilm);
         $this->set('film', $film);
         $d = $this->request->data;
+        $genre=$this->Genre->find('all');
+        $this->set('genre',$genre);
 
         if($this->request->is('post'))
         {

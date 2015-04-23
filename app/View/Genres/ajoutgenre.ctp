@@ -4,7 +4,14 @@
 <?php echo $this->Form->create('Genre'); ?>
 	<div class="row">
 	    <div class="large-4 columns">
-			<?php echo $this->Form->input('genre',array('label' =>"Genre", "type"=>"text", "maxlength"=>"30")); ?>
+			<?php //echo $this->Form->input('genre',array('label' =>"Genre", "type"=>"text", "maxlength"=>"30")); 
+				$options=array();
+				foreach ($genre as $g) {
+					$options[$g['Genre']['genre']]=$g['Genre']['genre'];
+				}
+
+				echo $this->Form->select('genre', $options, ['escape' => false,'empty'=>false]);
+			?>
 		</div>
 	</div>
 	<div class="row">
