@@ -21,7 +21,7 @@
                   <ul class="dropdown">
                     <?php echo "<li>".$this->Html->link('Modifier le profil', array('controller' => 'Membres','action'=>'modifier'))."</li>";
                           //echo "<li>".$this->Html->link('Noter des films', array('controller' => 'Membres','action'=>''))."</li>";
-                          echo "<li>".$this->Html->link('Mes Groupes', array('controller' => 'Groupes','action'=>'mesgroupes'))."</li>";
+                          echo "<li>".$this->Html->link('Mes groupes', array('controller' => 'Groupes','action'=>'mesgroupes'))."</li>";
                     ?>
                   </ul>
                 </li>

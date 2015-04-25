@@ -122,7 +122,7 @@
 						"alt"=>"etoile",
 						));
 				}
-				echo " <h5>excelent</h5>";
+				echo " <h5>excellent</h5>";
 			}
 			
 	      	if(AuthComponent::user('Membre')){
@@ -140,7 +140,7 @@
 								'2'=>'moyen',
 								'3'=>'bon',
 								'4'=>'très bon',
-								'5'=>'excelent'
+								'5'=>'excellent'
 								],[
 								'default'=>'3',
 								'empty'=>false
@@ -171,7 +171,7 @@
 							echo "Vous considérez ce film comme très bon.";
 							break;
 						case '5':
-							echo "Vous considérez ce film comme excelent.";
+							echo "Vous considérez ce film comme excellent.";
 							break;
 						
 						default:
@@ -228,7 +228,7 @@ if ($dist!=NULL) {
 }
 
 if ($real!=NULL) {
-	echo '</ul><h5>Realisateur:</h5><ul class="inline-list">';
+	echo '</ul><h5>Réalisateur:</h5><ul class="inline-list">';
 	foreach ($real as $r) {
 		//debug($r);
 		if ($r['Realisateur']['biographie']!= NULL) {
