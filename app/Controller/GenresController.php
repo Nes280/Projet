@@ -3,7 +3,10 @@
     public $helpers = array('Html', 'Form');
 
     public function index() {
-        $this->set('genres', $this->Genre->find('all'));
+        $genre=$this->Genre->find('all',[
+            'order'=>['Genre.genre'=>'ASC']
+            ]);
+        $this->set('genres',$genre);
     }
 
     public function view($id = null) {
@@ -59,7 +62,9 @@
         $film = $this->Genre->Film->findById($idfilm);
         $this->set('film', $film);
         $d = $this->request->data;
-        $genre=$this->Genre->find('all');
+        $genre=$this->Genre->find('all',[
+            'order'=>['Genre.genre'=>'ASC']
+            ]);
         $this->set('genre',$genre);
 
         if($this->request->is('post'))

@@ -15,6 +15,9 @@
         $this->loadModel('Pays');
         $this->Pays->create();
 
+        $pays=$this->Pays->query("SELECT pays FROM pays ;");
+        $this->set('pays',$pays);
+
         if($this->request->is('post'))
         {
             $d['Pays']['id'] = null;

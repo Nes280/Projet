@@ -19,16 +19,16 @@
 				echo "<a href='#' data-reveal-id='video' class='radius button' data-equalizer-watch='foo'>Voir la vidéo</a>	
 						<div id='video' class='reveal-modal large' data-reveal aria-labelledby='videoTitre' aria-hidden='true' role='dialog'>
 		  					<h2 id='videoTitre'>".$film['Film']['nom']."</h2>
-		  					<div class='flex-video widescreen '>"
-		    					//<iframe width='1280' height='720' src='".$film['Film']['video']."' framebordeer='0' ></iframe>
-		    					.$this->Html->media(
+		  					<div class='flex-video widescreen '>
+		    					<iframe width='1280' height='720' src='".$film['Film']['video']."' framebordeer='0' ></iframe>"
+		    					./*$this->Html->media(
 								    array(
 								        $film['Film']['nom'].'.mp4',  
 								    ),
 								    array(
 								    	'controls',
 								    	'name'=>'media',
-								    	)).
+								    	)).*/
 		  					"</div>
 		  				</div>";
 			}
@@ -187,22 +187,25 @@
 
 
 <?php
-echo'<h5>Acteurs:</h5><ul class="inline-list">';
-foreach ($acteursFilm as $a ):
-	if ($a['Acteur']['biographie']) {
-		echo '<li>'.$this->Html->link(
-         	$a['Acteur']['prenom'].' '.$a['Acteur']['nom'],
-         	array(
-                'controller' => 'acteurs', 
-                'action' => 'view', 
-                $a['Acteur']['id']
-            )
-       	).'</li>';
-	}
-	else echo "<li>".$a['Acteur']['prenom']." ".$a['Acteur']['nom']."</li>";
-    // debug($a);
-endforeach;
-echo "</ul>";
+if ($acteursFilm!=NULL) {
+	echo'<h5>Acteurs:</h5><ul class="inline-list">';
+	foreach ($acteursFilm as $a ):
+		if ($a['Acteur']['biographie']) {
+			echo '<li>'.$this->Html->link(
+	         	$a['Acteur']['prenom'].' '.$a['Acteur']['nom'],
+	         	array(
+	                'controller' => 'acteurs', 
+	                'action' => 'view', 
+	                $a['Acteur']['id']
+	            )
+	       	).'</li>';
+		}
+		else echo "<li>".$a['Acteur']['prenom']." ".$a['Acteur']['nom']."</li>";
+	    // debug($a);
+	endforeach;
+	echo "</ul>";
+}
+
 foreach ($film['Film'] as $f => $v) {
 	if ($v != '') 
 	{	
@@ -215,35 +218,44 @@ foreach ($film['Film'] as $f => $v) {
 		elseif ($f=='budget') echo "<h5>Budget:</h5><p>$v €</p>";
 	}
 }
-echo '<h5>Distributeur:</h5><ul class="inline-list">';
-foreach ($dist as $d) {
-	//debug($r);
-	echo '<li>'.$d['Distributeur']['nom'].'</li>';
-}
-echo '</ul><h5>Realisateur:</h5><ul class="inline-list">';
-foreach ($real as $r) {
-	//debug($r);
-	if ($r['Realisateur']['biographie']!= NULL) {
-	
-		echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
-			array(
-	                        'controller' => 'Realisateurs', 
-	                        'action' => 'view', 
-	                        $r['Realisateur']['id']
-	                        )
-	                    ).'</li>';
-	}
-	else echo "<li>".$r['Realisateur']['prenom']." ".$r['Realisateur']['nom']."</li>";
-}
-echo '</ul><h5>Pays:</h5><ul class="inline-list">';
-foreach ($pays as $p) {
-		echo "<li><p>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
-					array(
-						"alt"=>$p['Pays']['pays'],
-						"data-equalizer-watch"=>"foo"))." ".$p['Pays']['pays']."</p></li>";
 
+if ($dist!=NULL) {
+	echo '<h5>Distributeur:</h5><ul class="inline-list">';
+	foreach ($dist as $d) {
+		//debug($r);
+		echo '<li>'.$d['Distributeur']['nom'].'</li>';
+	}
 }
-echo "</ul>";
+
+if ($real!=NULL) {
+	echo '</ul><h5>Realisateur:</h5><ul class="inline-list">';
+	foreach ($real as $r) {
+		//debug($r);
+		if ($r['Realisateur']['biographie']!= NULL) {
+		
+			echo '<li>'.$this->Html->link($r['Realisateur']['prenom']." ".$r['Realisateur']['nom'],
+				array(
+		                        'controller' => 'Realisateurs', 
+		                        'action' => 'view', 
+		                        $r['Realisateur']['id']
+		                        )
+		                    ).'</li>';
+		}
+		else echo "<li>".$r['Realisateur']['prenom']." ".$r['Realisateur']['nom']."</li>";
+	}
+}
+
+if ($pays!=NULL) {
+	echo '</ul><h5>Pays:</h5><ul class="inline-list">';
+	foreach ($pays as $p) {
+			echo "<li><p>".$this->Html->image("Pays/".$p['Pays']['pays'].".png",
+						array(
+							"alt"=>$p['Pays']['pays'],
+							"data-equalizer-watch"=>"foo"))." ".$p['Pays']['pays']."</p></li>";
+
+	}
+	echo "</ul>";
+}
 
 ?>
 <!--p><?php echo $film['Film']['synopsis']; ?></p>

@@ -4,7 +4,7 @@
 		public $validate = array(
 			'nom' => array(
 				array(
-					'rule' => array('custom', '/^[a-z0-9 ]*$/i'),
+					'rule' => array('custom', '/^[a-z0-9\'éèà ]*$/i'),
 					'required' => true,
 					'allowEmpty'=> false,
 					'message'=>"Le nom n'est pas valide"

@@ -109,6 +109,7 @@
     echo "</div></div>";
     //if (!AuthComponent::user('Membre')) {
         echo '<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5">';
+        shuffle($lesFilms);
         foreach ($lesFilms as $f) {
             echo '<li>'.$tableau[$i]=$this->Html->link($this->Html->image(
                             "Films/".$f['Film']['nom'].".jpg", 

@@ -1,7 +1,11 @@
 <div class="row">
 	<h2>Créer un groupe</h2>
 </div>
-<?php echo $this->Form->create('Groupe'); ?>
+
+<?php 
+	if (AuthComponent::user('Membre')['administrateur']) { //securité
+		//debug(AuthComponent::user('Membre')['administrateur']);
+echo $this->Form->create('Groupe'); ?>
 	<div class="row">
 	    <div class="large-4 columns">
 			<?php echo $this->Form->input('nom',array('label' =>"Nom", "type"=>"text", "maxlength"=>"30")); ?>
@@ -13,4 +17,7 @@
 	<div class="row">
 		<?php echo $this->Form->end('Créer'); ?>
 	</div>
-
+<?php
+}
+else echo"Merci de vous connecter.";
+?>
